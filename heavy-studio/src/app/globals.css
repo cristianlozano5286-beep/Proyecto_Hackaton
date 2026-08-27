@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --black: #0B0C12;
+  --white: #F5F2EA;
+  --yellow: #F5ED32;
+  --pink: #F28CCB;
+  --blue: #4C7DFF;
+  --green: #8DFF68;
+  --orange: #FF7347;
+}
+
+@theme inline {
+  --color-black: var(--black);
+  --color-white: var(--white);
+  --color-yellow: var(--yellow);
+  --color-pink: var(--pink);
+  --color-blue: var(--blue);
+  --color-green: var(--green);
+  --color-orange: var(--orange);
+  --font-sans: var(--font-space);
+  --font-serif: var(--font-instrument);
+  --font-mono: var(--font-mono);
+}
+
+* { scrollbar-width: thin; scrollbar-color: var(--black) transparent; }
+html { scroll-behavior: auto; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-space), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--yellow); color: var(--black); }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Hide scrollbar for chrome */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 999px; }
+
+/* Typography helpers */
+.text-hero { font-size: clamp(48px, 11vw, 168px); line-height: 0.85; letter-spacing: -0.04em; font-weight: 800; }
+.text-display { font-size: clamp(32px, 7vw, 88px); line-height: 0.9; letter-spacing: -0.03em; }
