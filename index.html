@@ -3,531 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Llano Eterno — La Sabana Infinita | Hackatón 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Manrope:wght@300;400;600;700;800&family=Dancing+Script:wght@700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<title>LLANITO IA — La sabana infinita</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- CURSOR -->
-<div class="cursor" id="cursor"><span>◎</span></div>
-
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="loader-corocora">🦩</div>
-  <div class="loader-bar"><span id="loaderProgress"></span></div>
-  <p>Cargando la inmensidad del llano...</p>
-</div>
-
 <!-- NAV -->
-<nav id="nav">
-  <div class="logo"> <i>🦩</i> LLANO <b>ETERNO</b> <small>• 2026</small></div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#hero">Inicio</a></li>
-    <li><a href="#fauna">Fauna</a></li>
-    <li><a href="#travesia">Travesía</a></li>
-    <li><a href="#sabores">Sabores</a></li>
-    <li><a href="#joropo">Joropo</a></li>
-    <li><a href="#leyendas">Leyendas</a></li>
-    <li><a href="#mapa">Mapa</a></li>
-  </ul>
-  <div class="nav-actions">
-    <button id="btnCiclo" class="btn-ciclo" title="Cambiar ciclo del día">🌇 Atardecer</button>
-    <button id="btnAudio" class="btn-audio">♫ OFF</button>
-    <button id="btnLogin" class="btn-login">👤 Ingresar</button>
+<nav class="topbar">
+  <div class="brand">LLANITO <b>IA</b><span>• Sabana 2026</span></div>
+  <div class="top-actions">
+    <a href="#manifiesto">Manifiesto</a>
+    <button id="btnLoginTop" class="btn-login-top">👤 Ingresar</button>
+    <span class="menu" id="hamburger">—</span>
   </div>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- HERO CINEMÁTICO -->
-<section id="hero" class="hero" data-theme="atardecer">
-  <canvas id="dustCanvas"></canvas>
-  <div class="sky"></div>
-  <div class="sun" id="sun"></div>
-  <div class="moon" id="moon">🌕</div>
-  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+<!-- LEFT DOTS -->
+<div class="dots" id="dots">
+  <button class="dot active" data-i="0"><span>01</span></button>
+  <button class="dot" data-i="1"><span>02</span></button>
+  <button class="dot" data-i="2"><span>03</span></button>
+  <button class="dot" data-i="3"><span>04</span></button>
+  <button class="dot" data-i="4"><span>05</span></button>
+  <div class="dot-line"><span id="dotProgress"></span></div>
+</div>
 
-  <!-- Bandada que sigue mouse -->
-  <div class="flock" id="flock">
-    <span class="f-bird">🦩</span><span class="f-bird">🦩</span><span class="f-bird">🦩</span><span class="f-bird">🦩</span><span class="f-bird">🦩</span><span class="f-bird">🦩</span>
-  </div>
+<!-- HINTS lesanimals style -->
+<div class="hint hint-top" id="hintTop">Click & drag <br><small>← → arrastra</small></div>
+<div class="hint hint-bottom" id="hintBottom"><span id="hintAction">Mantén la barra espaciadora</span> <br><small id="hintSub">para expandir la sabana</small></div>
 
-  <div class="morichales"></div>
-  <div class="hero-ground"></div>
-
-  <!-- Caballos galopando en hero (sabana viva) -->
-  <div class="horses" id="horses">
-    <span class="horse h1">🐎</span><span class="horse h2">🐎</span><span class="horse h3">🐎</span>
-  </div>
-
-  <div class="hero-content">
-    <p class="eyebrow">Meta • Casanare • Arauca • Vichada — Corazón de Colombia</p>
-    <h1>Donde la<br><span class="red">sabana</span> no<br>tiene final</h1>
-    <p class="sub">Una experiencia viva inspirada en tu <b>Corocora Roja</b>. Polvo, brisa, joropo y 180° de horizonte. Cada scroll es un galope.</p>
-    <div class="hero-btns">
-      <a href="#fauna" class="btn btn-red">Comenzar travesía →</a>
-      <button class="btn btn-glass" id="btnVuelo">Hacer volar la bandada 🦩</button>
+<!-- STAGES CONTAINER -->
+<main id="stageWrap">
+  <!-- 01 Amanecer / Corocora -->
+  <section class="stage active" data-stage="0" style="--bg:#FFF6E5; --accent:#FF1A1A">
+    <div class="stage-number">01</div>
+    <div class="stage-text">
+      <p class="eyebrow">Un poco más de <b>amanecer</b></p>
+      <h1>Un poco<br>más de<br><span class="accent">llano</span></h1>
+      <p class="desc">La Corocora roja despierta. <b>LLANITO IA</b> aprende del vuelo que pinta el estero de rojo al alba.</p>
+      <div class="meta"><span>05:45 AM</span><span>•</span><span>Estero infinito</span></div>
     </div>
-    <div class="hero-stats">
-      <div><strong id="statTemp">31°</strong><span>Brisa sabanera</span></div>
-      <div><strong>∞</strong><span>Horizonte</span></div>
-      <div><strong>4</strong><span>Ecosistemas</span></div>
-      <div><strong id="statHora">18:23</strong><span>Hora llanera</span></div>
-    </div>
-  </div>
-
-  <!-- CARD COROCORA REAL -->
-  <div class="corocora-hero" id="corocoraHero">
-    <div class="ch-img">
-      <!-- Si agregas corocora.jpg se verá tu foto real, si no, se ve el SVG -->
-      <img src="corocora.jpg" alt="Corocora Roja" onerror="this.style.display='none'">
-      <div class="ch-svg-wrap">
-        <svg viewBox="0 0 200 260" class="svg-corocora">
-          <ellipse cx="100" cy="238" rx="68" ry="11" fill="rgba(0,0,0,0.35)"/>
-          <path d="M72 212 Q 92 125 126 58 Q 136 36 151 46 Q 146 61 131 71 Q 136 91 111 111 Q 141 131 136 172 Q 121 192 82 212 Z" fill="#FF1A1A" stroke="#7A0000" stroke-width="1.8"/>
-          <path d="M56 151 Q 76 111 96 131 Q 86 151 66 166 Z" fill="#FF3B3B"/>
-          <path d="M51 141 Q 91 81 121 101 Q 111 126 71 156 Z" fill="#FF5252" opacity="0.92"/>
-          <circle cx="149" cy="53" r="6" fill="white"/><circle cx="150" cy="53" r="3" fill="black"/><circle cx="151" cy="52" r="1" fill="white"/>
-          <path d="M151 49 Q 176 66 166 86 Q 161 76 151 61 Z" fill="#E8E8E8" stroke="#333" stroke-width="1.2"/>
-          <path d="M82 214 Q 87 232 84 252 M 112 212 Q 117 234 120 252" stroke="#7A0000" stroke-width="3.5" stroke-linecap="round"/>
-          <g opacity="0.85">
-            <path d="M 70 165 Q 60 180 55 195" stroke="#7A0000" stroke-width="1" fill="none"/>
-            <path d="M 85 168 Q 75 182 70 196" stroke="#7A0000" stroke-width="1" fill="none"/>
+    <div class="stage-art">
+      <div class="art-card">
+        <svg viewBox="0 0 320 220" class="art-svg">
+          <ellipse cx="160" cy="200" rx="90" ry="10" fill="rgba(0,0,0,0.12)"/>
+          <!-- morichal -->
+          <path d="M 40 140 Q 70 90 95 135 Q 120 85 150 130 Q 180 95 210 135 Q 240 100 270 140 Z" fill="#1B6B2A" opacity="0.95"/>
+          <!-- sol -->
+          <circle cx="230" cy="60" r="28" fill="#FFD23F" stroke="#FF8C2A" stroke-width="3"/>
+          <!-- corocora vuelo -->
+          <g class="bird-fly">
+            <path d="M 70 80 Q 95 42 128 52 Q 118 66 88 72 Z" fill="#FF1A1A" stroke="#8B0000" stroke-width="1.2" class="wing1"/>
+            <path d="M 70 80 Q 54 58 36 64 Q 48 74 70 84 Z" fill="#FF3B3B" class="wing2"/>
+            <path d="M 70 78 Q 92 68 102 46 Q 108 38 116 44 Q 112 52 102 60 Q 96 72 72 82 Z" fill="#FF5252"/>
+            <circle cx="114" cy="46" r="4" fill="white"/><circle cx="115" cy="46" r="1.8" fill="black"/>
+            <path d="M116 44 Q 130 48 126 56 Q 122 52 116 48 Z" fill="#EEE" stroke="#333" stroke-width="0.8"/>
+          </g>
+          <g class="bird-fly" style="transform:scale(0.7) translate(90px, 30px)" opacity="0.85">
+            <path d="M 70 80 Q 95 42 128 52 Q 118 66 88 72 Z" fill="#FF1A1A" class="wing1"/>
+          </g>
+          <g class="bird-fly" style="transform:scale(0.55) translate(140px, -10px)" opacity="0.7">
+            <path d="M 70 80 Q 95 42 128 52 Q 118 66 88 72 Z" fill="#FF1A1A" class="wing1"/>
           </g>
         </svg>
-      </div>
-      <span class="ch-badge">🦩 Corocora Roja • Inspirada en tu foto</span>
-      <span class="ch-hint">Haz clic → bandada</span>
-    </div>
-    <div class="ch-info">
-      <h3>La Llamarada del Estero</h3>
-      <p>Roja como el atardecer que nunca termina. Cada pluma guarda un verso llanero.</p>
-      <div class="ch-meta"><span>🔴 #FF1A1A</span><span>• Eudocimus ruber</span><span>• Símbolo del llano</span></div>
-    </div>
-  </div>
-
-  <div class="scroll-indicator"><span></span><p>Desliza para cabalgar</p></div>
-</section>
-
-<!-- FAUNA — CARRUSEL 3D DRAG -->
-<section id="fauna" class="section fauna">
-  <div class="section-head">
-    <p class="label">Fauna Viva • Arrastra para explorar</p>
-    <h2>Guardianes de la <em>Sabana</em></h2>
-    <p class="desc">Desliza, haz clic y escucha. Cada animal tiene su historia y su sonido.</p>
-  </div>
-  <div class="carousel-wrap">
-    <button class="car-btn prev" id="carPrev">‹</button>
-    <div class="carousel" id="carousel">
-      <div class="track" id="track">
-        <article class="f-card" data-animal="corocora" style="--c:#FF1A1A">
-          <div class="f-art" style="background:linear-gradient(180deg,#FFE8E8,#FFD0D0)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="70" rx="38" ry="6" fill="rgba(0,0,0,0.12)"/>
-              <!-- cuerpo -->
-              <path d="M 38 52 Q 50 22 78 18 Q 84 16 88 22 Q 86 27 80 29 Q 82 36 74 42 Q 88 48 84 58 Q 76 64 48 58 Z" fill="#FF1A1A" stroke="#8B0000" stroke-width="1.2"/>
-              <!-- ala animada -->
-              <path class="wing" d="M 28 42 Q 52 18 72 28 Q 68 38 42 48 Z" fill="#FF3B3B" stroke="#8B0000" stroke-width="1"/>
-              <circle cx="86" cy="24" r="4" fill="white"/><circle cx="87" cy="24" r="2" fill="black"/>
-              <path d="M88 22 Q 100 26 96 33 Q 94 29 88 26 Z" fill="#DDD" stroke="#333" stroke-width="0.8"/>
-            </svg>
-          </div>
-          <h3>Corocora Roja</h3><p>Bandadas que incendian el cielo al alba.</p>
-          <div class="f-tags"><span>En vuelo</span><span>Estero</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="chiguire" style="--c:#6B8E23">
-          <div class="f-art" style="background:linear-gradient(180deg,#E8F5D8,#D0E8B8)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="70" rx="38" ry="6" fill="rgba(0,0,0,0.1)"/>
-              <g class="ch-body">
-                <ellipse cx="60" cy="48" rx="36" ry="18" fill="#8B7355" stroke="#5A4630" stroke-width="1.2"/>
-                <circle cx="38" cy="40" r="14" fill="#A0825A" stroke="#5A4630" stroke-width="1.1"/>
-                <circle cx="32" cy="38" r="2.2" fill="black"/><circle cx="33" cy="37" r="0.8" fill="white"/>
-                <ellipse cx="36" cy="46" rx="4" ry="2.5" fill="#5A4630"/>
-                <circle cx="28" cy="34" r="3" fill="#8B7355" stroke="#5A4630" stroke-width="0.8"/>
-                <circle cx="48" cy="34" r="3" fill="#8B7355" stroke="#5A4630" stroke-width="0.8"/>
-                <ellipse cx="82" cy="52" rx="7" ry="6" fill="#7A6548"/>
-              </g>
-            </svg>
-          </div>
-          <h3>Chigüiro</h3><p>Capibara gigante, familia de 20 al borde del agua.</p>
-          <div class="f-tags"><span>Familia</span><span>Tierno gigante</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="caballo" style="--c:#8B4513">
-          <div class="f-art" style="background:linear-gradient(180deg,#F5E6D0,#E8C9A0)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="70" rx="36" ry="6" fill="rgba(0,0,0,0.1)"/>
-              <g class="horse-body">
-                <path d="M 22 52 Q 34 38 56 42 Q 70 44 82 38 Q 90 36 92 44 Q 86 50 74 52 Q 68 56 56 54 Q 34 54 22 52 Z" fill="#8B4513" stroke="#5A2E0D" stroke-width="1.2"/>
-                <path d="M 82 38 Q 84 22 76 16 Q 72 14 70 20 Q 74 26 76 34 Z" fill="#A0522D" stroke="#5A2E0D" stroke-width="1"/>
-                <path d="M 70 20 Q 66 12 58 14 Q 60 18 68 22 Z" fill="#2A1A0A"/>
-                <circle cx="78" cy="28" r="2" fill="white"/><circle cx="78.5" cy="28" r="1.2" fill="black"/>
-                <path d="M 22 52 L 18 62 M 30 54 L 26 62 M 50 54 L 52 62 M 62 52 L 64 62" stroke="#5A2E0D" stroke-width="2" stroke-linecap="round"/>
-              </g>
-            </svg>
-          </div>
-          <h3>Caballo Llanero</h3><p>El latido de la sabana. Criollo e indomable.</p>
-          <div class="f-tags"><span>Criollo</span><span>Galope</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="babilla" style="--c:#C77A22">
-          <div class="f-art" style="background:linear-gradient(180deg,#E0F2E0,#C8E0B8)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="68" rx="38" ry="7" fill="rgba(0,0,0,0.12)"/>
-              <ellipse cx="60" cy="50" rx="40" ry="14" fill="#6B8E23" stroke="#2F4A12" stroke-width="1.2"/>
-              <g class="jaw">
-                <path d="M 82 48 Q 105 46 108 50 Q 102 56 82 54 Z" fill="#8BC16B" stroke="#2F4A12" stroke-width="1"/>
-                <path d="M 96 49 L 98 51 L 96 53 M 100 48 L 102 50 L 100 52" stroke="white" stroke-width="0.9" fill="none"/>
-                <circle cx="70" cy="44" r="3" fill="white"/><circle cx="70.5" cy="44" r="1.6" fill="#FF1A1A" stroke="black" stroke-width="0.4"/>
-              </g>
-              <path d="M 28 48 Q 22 46 18 50 Q 24 54 28 52 Z" fill="#6B8E23" stroke="#2F4A12" stroke-width="1"/>
-              <path d="M 30 38 Q 38 34 42 38" stroke="#2F4A12" stroke-width="0.6" fill="none" opacity="0.6"/>
-            </svg>
-          </div>
-          <h3>Babilla</h3><p>Guardián del caño, inmóvil como raíz.</p>
-          <div class="f-tags"><span>Caño</span><span>Sigilo</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="garza" style="--c:#2E86AB">
-          <div class="f-art" style="background:linear-gradient(180deg,#E0F0FF,#C0E0FF)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="70" rx="32" ry="6" fill="rgba(0,0,0,0.08)"/>
-              <path d="M 44 62 Q 50 40 62 22 Q 64 18 68 22 Q 66 28 60 34 Q 58 46 52 54 Q 58 56 54 62 Z" fill="white" stroke="#1A5A7A" stroke-width="1.1"/>
-              <path class="wing" d="M 30 38 Q 50 20 68 30 Q 62 42 36 48 Z" fill="#F0F8FF" stroke="#1A5A7A" stroke-width="0.9"/>
-              <circle cx="66" cy="24" r="3" fill="white" stroke="#1A5A7A" stroke-width="0.8"/><circle cx="67" cy="24" r="1.2" fill="black"/>
-              <path d="M68 22 Q 80 20 82 26 Q 76 26 68 24 Z" fill="#FFD23F" stroke="#8B6A00" stroke-width="0.7"/>
-              <path d="M 44 62 L 40 70 M 54 62 L 58 70" stroke="#FF8C2A" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Garza Blanca</h3><p>Elegancia que dibuja el horizonte.</p>
-          <div class="f-tags"><span>Vuelo nupcial</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="venado" style="--c:#A0522D">
-          <div class="f-art" style="background:linear-gradient(180deg,#FFF0E0,#FFD8B0)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="70" rx="34" ry="6" fill="rgba(0,0,0,0.09)"/>
-              <ellipse cx="60" cy="52" rx="26" ry="14" fill="#CD853F" stroke="#8B4513" stroke-width="1.1"/>
-              <circle cx="42" cy="42" r="12" fill="#DEB887" stroke="#8B4513" stroke-width="1"/>
-              <g class="antler">
-                <path d="M 36 30 Q 32 18 26 16 M 40 28 Q 42 18 48 14" stroke="#8B4513" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-                <path d="M 26 16 Q 24 12 22 14 M 48 14 Q 50 10 52 12" stroke="#8B4513" stroke-width="1.2" fill="none"/>
-              </g>
-              <circle cx="38" cy="40" r="2" fill="black"/><circle cx="38.5" cy="39.5" r="0.6" fill="white"/>
-              <ellipse cx="38" cy="46" rx="3" ry="2" fill="#5A2E0D"/>
-              <circle cx="82" cy="50" r="4" fill="#FFF" opacity="0.9"/><circle cx="78" cy="56" r="2.5" fill="#FFF" opacity="0.85"/>
-            </svg>
-          </div>
-          <h3>Venado Sabanero</h3><p>Silueta sagrada al atardecer.</p>
-          <div class="f-tags"><span>Alerta</span><span>Veloz</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="osa" style="--c:#FF7F50">
-          <div class="f-art" style="background:linear-gradient(180deg,#FFE8D8,#FFC8A8)">
-            <svg viewBox="0 0 120 80" class="f-svg">
-              <ellipse cx="60" cy="70" rx="36" ry="6" fill="rgba(0,0,0,0.1)"/>
-              <ellipse cx="58" cy="48" rx="28" ry="15" fill="#E9B44C" stroke="#8B5A2B" stroke-width="1.1"/>
-              <circle cx="38" cy="40" r="13" fill="#E9B44C" stroke="#8B5A2B" stroke-width="1"/>
-              <circle cx="34" cy="36" r="2" fill="black"/><circle cx="42" cy="36" r="2" fill="black"/>
-              <ellipse cx="38" cy="44" rx="3" ry="1.8" fill="white" stroke="#8B5A2B" stroke-width="0.6"/>
-              <circle cx="38" cy="43" r="1" fill="#333"/>
-              <g fill="#8B5A2B" opacity="0.85"><circle cx="56" cy="46" r="2"/><circle cx="62" cy="42" r="2.2"/><circle cx="68" cy="48" r="1.8"/></g>
-              <path class="tail" d="M 84 50 Q 102 42 106 50 Q 102 58 84 54 Z" fill="#C78A2A" stroke="#8B5A2B" stroke-width="1"/>
-            </svg>
-          </div>
-          <h3>Ocelote</h3><p>Mancha dorada entre morichales.</p>
-          <div class="f-tags"><span>Nocturno</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
-
-        <article class="f-card" data-animal="galapaga" style="--c:#228B22">
-          <div class="f-art" style="background:linear-gradient(180deg,#D8F0D8,#B8E0C0)">
-            <svg viewBox="0 0 120 80" class="f-svg shell">
-              <ellipse cx="60" cy="68" rx="38" ry="7" fill="rgba(0,0,0,0.12)"/>
-              <ellipse cx="60" cy="50" rx="34" ry="17" fill="#2E7D32" stroke="#1B4D1B" stroke-width="1.2"/>
-              <path d="M 40 42 Q 60 34 80 42 Q 78 54 60 58 Q 42 54 40 42 Z" fill="#4CAF50" stroke="#1B4D1B" stroke-width="0.9"/>
-              <path d="M 60 38 L 60 58 M 48 42 L 52 54 M 72 42 L 68 54 M 42 48 L 78 48" stroke="#1B4D1B" stroke-width="0.5" opacity="0.6"/>
-              <circle cx="82" cy="40" r="10" fill="#8D6E63" stroke="#4E342E" stroke-width="1"/>
-              <circle cx="85" cy="38" r="1.8" fill="black"/><circle cx="78" cy="44" r="2.5" fill="#8D6E63" stroke="#4E342E" stroke-width="0.7"/>
-            </svg>
-          </div>
-          <h3>Galápaga</h3><p>Lenta, sabia, guardiana del estero.</p>
-          <div class="f-tags"><span>Estero</span></div>
-          <button class="f-play">▶ Ver y escuchar</button>
-        </article>
+        <div class="art-caption">🦩 Corocora • Eudocimus ruber — la llamarada</div>
       </div>
     </div>
-    <button class="car-btn next" id="carNext">›</button>
-  </div>
-  <p class="drag-hint">← Arrastra o usa las flechas →</p>
-</section>
+  </section>
 
-<!-- TRAVESÍA — SCROLL STORY HORIZONTAL -->
-<section id="travesia" class="travesia">
-  <div class="t-header">
-    <p class="label">Travesía Llanera • Haz scroll</p>
-    <h2>Un día entero en la inmensidad</h2>
-  </div>
-  <div class="t-sticky">
-    <div class="t-track" id="tTrack">
-      <div class="t-scene s-amanecer">
-        <div class="s-sky"></div><div class="s-sun"></div>
-        <div class="s-ground"></div>
-        <div class="s-rider">🐎</div>
-        <div class="s-text"><h3>5:30 AM — Amanecer</h3><p>El llano despierta. Garzas cruzan el cielo frío y el rocío brilla.</p></div>
-      </div>
-      <div class="t-scene s-mediodia">
-        <div class="s-sky"></div><div class="s-sun"></div>
-        <div class="s-ground"></div>
-        <div class="s-rider">🐎</div>
-        <div class="s-text"><h3>12:00 PM — Sol vertical</h3><p>El sombrero vuela. El ganado busca el morichal. La sabana quema.</p></div>
-      </div>
-      <div class="t-scene s-atardecer">
-        <div class="s-sky"></div><div class="s-sun"></div>
-        <div class="s-ground"></div>
-        <div class="s-rider">🐎</div>
-        <div class="s-text"><h3>6:23 PM — Atardecer</h3><p>Todo se vuelve rojo corocora. El joropo nace.</p></div>
-      </div>
-      <div class="t-scene s-noche">
-        <div class="s-sky"></div><div class="s-moon">🌕</div>
-        <canvas class="fireflies"></canvas>
-        <div class="s-ground"></div>
-        <div class="s-rider">🐎</div>
-        <div class="s-text"><h3>9:00 PM — Noche llanera</h3><p>Luciérnagas, grillos y el Silbón a lo lejos. La sabana respira.</p></div>
+  <!-- 02 Mediodía / Chigüiro -->
+  <section class="stage" data-stage="1" style="--bg:#E8F5E9; --accent:#6B8E23">
+    <div class="stage-number">02</div>
+    <div class="stage-text">
+      <p class="eyebrow">Un poco menos de <b>ruido</b></p>
+      <h1>Un poco<br>menos de<br><span class="accent">prisa</span></h1>
+      <p class="desc">Mediodía. El Chigüiro flota en familia. <b>LLANITO IA</b> entiende que la inteligencia también es calma.</p>
+      <div class="meta"><span>12:00 PM</span><span>•</span><span>Caño sereno</span></div>
+    </div>
+    <div class="stage-art">
+      <div class="art-card">
+        <svg viewBox="0 0 320 220" class="art-svg">
+          <rect x="0" y="130" width="320" height="90" rx="12" fill="#2E86AB" opacity="0.85"/>
+          <path d="M 0 140 Q 80 135 160 142 Q 240 148 320 138 L 320 220 L 0 220 Z" fill="#5DADE2" opacity="0.6"/>
+          <!-- chigüiros -->
+          <g class="float">
+            <ellipse cx="120" cy="132" rx="44" ry="18" fill="#8B7355" stroke="#5A4630" stroke-width="1.4"/>
+            <circle cx="88" cy="122" r="16" fill="#A0825A" stroke="#5A4630" stroke-width="1.2"/>
+            <circle cx="82" cy="120" r="2" fill="black"/><circle cx="94" cy="120" r="2" fill="black"/>
+            <ellipse cx="86" cy="128" rx="4" ry="2.2" fill="#5A4630"/>
+            <circle cx="100" cy="116" r="4" fill="#8B7355" stroke="#5A4630" stroke-width="0.7"/>
+          </g>
+          <g class="float" style="animation-delay:.6s" transform="scale(0.72) translate(220,40)">
+            <ellipse cx="120" cy="132" rx="44" ry="18" fill="#8B7355" stroke="#5A4630" stroke-width="1.4"/>
+            <circle cx="88" cy="122" r="16" fill="#A0825A"/>
+          </g>
+          <g class="float" style="animation-delay:1.2s" transform="scale(0.55) translate(380,60)">
+            <ellipse cx="120" cy="132" rx="44" ry="18" fill="#8B7355"/>
+          </g>
+          <!-- garza -->
+          <path d="M 220 92 Q 228 62 244 52 Q 248 48 252 54 Q 246 64 236 72 Q 232 84 224 96 Z" fill="white" stroke="#1A5A7A" stroke-width="1"/>
+        </svg>
+        <div class="art-caption">🐹 Chigüiro • calma en familia de 20</div>
       </div>
     </div>
-    <div class="t-progress"><span id="tProgress"></span></div>
-  </div>
-</section>
+  </section>
 
-<!-- SABORES -->
-<section id="sabores" class="section sabores">
-  <div class="section-head">
-    <p class="label">Sabores del Llano • Interactivo</p>
-    <h2>Brasa, leña y <em>tradición</em></h2>
-  </div>
-  <div class="sabores-grid">
-    <article class="sabor" data-dish="mamona">
-      <div class="sabor-img">🔥</div>
-      <h3>Mamona / Ternera a la llanera</h3><p>4 horas a la brasa, alma del llano.</p>
-      <ul><li>Carne de novillo llanero</li><li>Yucca + plátano + ají de leche</li></ul>
-      <button class="btn-sabor">Ver ritual →</button>
-    </article>
-    <article class="sabor" data-dish="hayaca">
-      <div class="sabor-img">🫔</div>
-      <h3>Hayaca Llanera</h3><p>Envuelta en hoja de plátano, diciembre eterno.</p>
-      <ul><li>Masa de maíz + guiso llanero</li><li>Se comparte en familia</li></ul>
-      <button class="btn-sabor">Ver receta →</button>
-    </article>
-    <article class="sabor" data-dish="tungo">
-      <div class="sabor-img">🍌</div>
-      <h3>Tungo de arroz</h3><p>Dulce envuelto que huele a morichal.</p>
-      <ul><li>Arroz + leche + panela</li><li>Hoja de plátano</li></ul>
-      <button class="btn-sabor">Probar →</button>
-    </article>
-    <article class="sabor" data-dish="casabe">
-      <div class="sabor-img">🫓</div>
-      <h3>Casabe + Pisillo</h3><p>Croccante sabanero con carne desmechada llanera.</p>
-      <ul><li>Yuca amazónica</li><li>Pisillo de chigüiro o carne</li></ul>
-      <button class="btn-sabor">Descubrir →</button>
-    </article>
-  </div>
-</section>
-
-<!-- JOROPO INTERACTIVO -->
-<section id="joropo" class="section joropo">
-  <div class="joropo-grid">
-    <div class="joropo-text">
-      <p class="label">Cultura Viva • Toca para sonar</p>
-      <h2>Joropo, <br><em>alma que no muere</em></h2>
-      <p>El arpa llora como viento entre morichales, el cuatro responde, las maracas susurran. <b>Toca los instrumentos.</b></p>
-      <div class="instruments">
-        <button class="inst" data-inst="arpa"><span>🎵</span><strong>Arpa</strong><small>32 cuerdas</small></button>
-        <button class="inst" data-inst="cuatro"><span>🎸</span><strong>Cuatro</strong><small>Corazón llanero</small></button>
-        <button class="inst" data-inst="maracas"><span>🪇</span><strong>Maracas</strong><small>Brisa sabanera</small></button>
-      </div>
-      <button class="btn btn-red" id="btnVerso">✍️ Generar verso llanero</button>
-      <p id="verso" class="verso"></p>
-      <div class="vinyl-wrap">
-        <div class="vinyl" id="vinyl"><div class="vinyl-center">♫</div></div>
-        <p><b>Alma Llanera</b> — haz clic en el vinilo</p>
+  <!-- 03 Atardecer / Caballo -->
+  <section class="stage" data-stage="2" style="--bg:#FFF0D6; --accent:#FF8C2A">
+    <div class="stage-number">03</div>
+    <div class="stage-text">
+      <p class="eyebrow">Un poco más de <b>horizonte</b></p>
+      <h1>Un poco<br>más de<br><span class="accent">vuelo</span></h1>
+      <p class="desc">Atardecer. El caballo criollo galopa y el polvo se vuelve oro. <b>LLANITO IA</b> corre libre, sin fronteras.</p>
+      <div class="meta"><span>18:23 PM</span><span>•</span><span>Polvo dorado</span></div>
+    </div>
+    <div class="stage-art">
+      <div class="art-card">
+        <svg viewBox="0 0 320 220" class="art-svg">
+          <circle cx="250" cy="70" r="36" fill="#FF6B35" opacity="0.95"/>
+          <path d="M 0 150 Q 80 120 160 148 Q 240 172 320 140 L 320 220 L 0 220 Z" fill="#2A6B2A"/>
+          <path d="M 0 162 Q 90 152 180 168 Q 260 180 320 158" stroke="#FFD23F" stroke-width="1.2" opacity="0.5" fill="none" stroke-dasharray="4 6"/>
+          <!-- caballos -->
+          <g class="gallop">
+            <path d="M 40 148 Q 58 126 82 138 Q 96 142 108 132 Q 116 128 118 140 Q 112 148 100 150 Q 88 156 76 152 Q 52 152 40 148 Z" fill="#8B4513" stroke="#5A2E0D" stroke-width="1.2"/>
+            <path d="M 108 132 Q 110 112 100 104 Q 96 102 94 108 Q 98 118 102 128 Z" fill="#A0522D"/>
+            <circle cx="102" cy="116" r="2" fill="white"/><circle cx="102.5" cy="116" r="1.1" fill="black"/>
+            <path d="M 40 148 L 34 162 M 50 150 L 44 162 M 74 152 L 76 162 M 88 150 L 92 162" stroke="#5A2E0D" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+          <g class="gallop" style="animation-delay:.25s" transform="translate(70,6) scale(0.9)">
+            <path d="M 40 148 Q 58 126 82 138 Q 96 142 108 132 Q 116 128 118 140 Q 112 148 100 150 Q 88 156 76 152 Q 52 152 40 148 Z" fill="#6B3A1A"/>
+          </g>
+          <g class="gallop" style="animation-delay:.5s" transform="translate(140,10) scale(0.78)" opacity="0.9">
+            <path d="M 40 148 Q 58 126 82 138 Q 96 142 108 132 Q 116 128 118 140 Q 112 148 100 150 Z" fill="#8B4513"/>
+          </g>
+        </svg>
+        <div class="art-caption">🐎 Caballo Llanero — polvo que es oro</div>
       </div>
     </div>
-    <div class="joropo-visual">
-      <div class="stage-joropo">
-        <div class="figurine">💃</div><div class="figurine">🕺</div>
-        <div class="zapateo">¡Zapateo!</div>
-      </div>
-      <p class="quiz-link">¿Qué animal del llano eres? <a href="#quiz">Haz el test ↓</a></p>
+  </section>
+
+  <!-- 04 Noche / Babilla + Leyendas -->
+  <section class="stage" data-stage="3" style="--bg:#0A1A2F; --accent:#FFD23F">
+    <div class="stage-number" style="color:rgba(255,255,255,0.14)">04</div>
+    <div class="stage-text" style="color:#fff">
+      <p class="eyebrow" style="color:#FFD23F">Un poco menos de <b>luz</b></p>
+      <h1 style="color:#fff">Un poco<br>más de<br><span class="accent" style="color:#FFD23F">misterio</span></h1>
+      <p class="desc" style="color:rgba(255,255,255,0.82)">Noche. La babilla guarda el caño y el Silbón susurra. <b style="color:#FFD23F">LLANITO IA</b> escucha lo que pocos oyen.</p>
+      <div class="meta" style="color:rgba(255,255,255,0.6)"><span>21:40 PM</span><span>•</span><span>Luciérnagas</span></div>
     </div>
-  </div>
-</section>
-
-<!-- LEYENDAS — NOCHE MÍSTICA -->
-<section id="leyendas" class="leyendas">
-  <canvas id="fogCanvas"></canvas>
-  <div class="ley-head">
-    <p class="label" style="color:#FFD23F">Noche Mística • Leyendas</p>
-    <h2>Susurros de la <em>Sabana</em></h2>
-    <p>Cuando cae la noche, el llano cuenta historias.</p>
-  </div>
-  <div class="ley-grid">
-    <article class="ley">
-      <div class="ley-icon">👻</div>
-      <h3>El Silbón</h3><p>Si lo oyes lejos, está cerca. Lleva un saco de huesos y su silbido hiela la sabana.</p>
-      <span class="ley-escucha">◉ Escuchar silbido</span>
-    </article>
-    <article class="ley">
-      <div class="ley-icon">🔥</div>
-      <h3>La Bola de Fuego</h3><p>Luz que persigue al llanero trasnochador. Dicen que es un ánima en pena.</p>
-      <span class="ley-escucha">◉ Ver destello</span>
-    </article>
-    <article class="ley">
-      <div class="ley-icon">🐎</div>
-      <h3>El Jinete sin cabeza</h3><p>Galopea en noches de tormenta buscando su sombrero perdido.</p>
-      <span class="ley-escucha">◉ Sentir galope</span>
-    </article>
-  </div>
-</section>
-
-<!-- MAPA -->
-<section id="mapa" class="section mapa">
-  <div class="section-head">
-    <p class="label">Territorio • Explora</p>
-    <h2>El Llano es <em>infinito</em></h2>
-    <p class="desc">Haz clic en cada departamento. Cada punto es un estero real.</p>
-  </div>
-  <div class="mapa-wrap">
-    <svg viewBox="0 0 500 300" class="mapa-svg">
-      <!-- forma estilizada llano -->
-      <path d="M40 160 Q 120 40 250 70 Q 380 100 440 170 Q 400 260 250 270 Q 120 260 40 160 Z" fill="#E8F5E9" stroke="#2A6B2A" stroke-width="2"/>
-      <!-- ríos -->
-      <path d="M80 140 Q 180 130 260 150 Q 340 170 420 180" stroke="#2E86AB" stroke-width="3" fill="none" opacity="0.6"/>
-      <path d="M120 200 Q 200 190 280 210" stroke="#2E86AB" stroke-width="2.5" fill="none" opacity="0.5"/>
-      <!-- puntos -->
-      <g class="map-point" data-depto="Meta"><circle cx="180" cy="145" r="14" fill="#FF1A1A"/><text x="180" y="149" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">M</text></g>
-      <g class="map-point" data-depto="Casanare"><circle cx="260" cy="115" r="14" fill="#FF8C2A"/><text x="260" y="119" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">C</text></g>
-      <g class="map-point" data-depto="Arauca"><circle cx="320" cy="95" r="14" fill="#2A6B2A"/><text x="320" y="99" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">A</text></g>
-      <g class="map-point" data-depto="Vichada"><circle cx="380" cy="155" r="14" fill="#2E86AB"/><text x="380" y="159" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">V</text></g>
-      <text x="180" y="175" text-anchor="middle" font-size="11" font-weight="700">Meta</text>
-      <text x="260" y="145" text-anchor="middle" font-size="11" font-weight="700">Casanare</text>
-      <text x="320" y="125" text-anchor="middle" font-size="11" font-weight="700">Arauca</text>
-      <text x="380" y="185" text-anchor="middle" font-size="11" font-weight="700">Vichada</text>
-    </svg>
-    <div class="map-info" id="mapInfo">
-      <h3>Selecciona un departamento</h3>
-      <p>Cada territorio guarda esteros, morichales y cantos distintos. Haz clic en un punto.</p>
-    </div>
-  </div>
-</section>
-
-<!-- GALERÍA + QUIZ -->
-<section class="section galeria-quiz">
-  <div class="gq-grid">
-    <div class="galeria">
-      <h3>Galería Sabana — Tu Corocora es la portada</h3>
-      <div class="gallery">
-        <div class="g-item big" style="background:linear-gradient(135deg,#FF1A1A,#FF8C2A)"><span>🦩 Corocora — tu foto</span><small>Reemplaza corocora.jpg para verla real</small></div>
-        <div class="g-item" style="background:linear-gradient(135deg,#2A6B2A,#6B8E23)">🌅<span>Amanecer</span></div>
-        <div class="g-item" style="background:linear-gradient(135deg,#2E86AB,#5DADE2)">💧<span>Estero</span></div>
-        <div class="g-item" style="background:linear-gradient(135deg,#8B4513,#CD853F)">🐎<span>Coleo</span></div>
-        <div class="g-item" style="background:linear-gradient(135deg,#FFD23F,#FF8C2A)">🌾<span>Morichal</span></div>
-        <div class="g-item" style="background:linear-gradient(135deg,#0A1A2F,#1A3A5A)">🌌<span>Noche</span></div>
+    <div class="stage-art">
+      <div class="art-card" style="background:#0F2A44;border-color:rgba(255,255,255,0.12)">
+        <svg viewBox="0 0 320 220" class="art-svg">
+          <circle cx="240" cy="48" r="22" fill="#FFF6A0" stroke="#FFD23F" stroke-width="2"/>
+          <g class="twinkle"><circle cx="60" cy="40" r="1.2" fill="white"/><circle cx="90" cy="30" r="1" fill="white"/><circle cx="140" cy="28" r="1.3" fill="white"/><circle cx="180" cy="38" r="1" fill="white"/><circle cx="40" cy="70" r="1" fill="white"/></g>
+          <path d="M 0 150 L 320 150 L 320 220 L 0 220 Z" fill="#0F3A1F"/>
+          <path d="M 30 132 Q 70 118 110 132 Q 150 120 190 132 Q 230 118 270 132 L 270 150 L 30 150 Z" fill="#1B5E20" opacity="0.9"/>
+          <!-- babilla -->
+          <g class="bab-float">
+            <ellipse cx="160" cy="148" rx="62" ry="16" fill="#2E7D32" stroke="#0A2A10" stroke-width="1.2"/>
+            <path d="M 202 144 Q 232 142 238 148 Q 228 158 202 152 Z" fill="#4CAF50" stroke="#0A2A10" stroke-width="1" class="jaw"/>
+            <circle cx="182" cy="138" r="4" fill="white"/><circle cx="183" cy="138" r="2" fill="#FF1A1A"/>
+            <circle cx="96" cy="146" r="3" fill="#2E7D32"/>
+          </g>
+          <!-- luciérnagas -->
+          <g class="firefly"><circle cx="80" cy="82" r="2.2" fill="#FFD23F"/><circle cx="120" cy="68" r="1.8" fill="#FFD23F"/><circle cx="200" cy="78" r="2" fill="#FFD23F"/><circle cx="170" cy="92" r="1.6" fill="#FFD23F"/></g>
+        </svg>
+        <div class="art-caption" style="color:#FFD23F">🐊 Babilla + 🌌 Luciérnagas — guardianes nocturnos</div>
       </div>
     </div>
-    <div class="quiz" id="quiz">
-      <h3>Test: ¿Qué animal del llano eres?</h3>
-      <div class="quiz-q" data-q="1">
-        <p>1. ¿Cómo enfrentas la vida?</p>
-        <button data-v="corocora">Vuelo alto y llamativo</button>
-        <button data-v="chiguire">En familia, tranquilo</button>
-        <button data-v="caballo">A galope, libre</button>
-      </div>
-      <div class="quiz-q" data-q="2">
-        <p>2. ¿Tu hora favorita?</p>
-        <button data-v="corocora">Amanecer rosado</button>
-        <button data-v="caballo">Mediodía ardiente</button>
-        <button data-v="chiguire">Atardecer dorado</button>
-      </div>
-      <div class="quiz-q hidden" data-q="3">
-        <p>3. ¿Qué sonido te llama?</p>
-        <button data-v="corocora">Arpa llanera</button>
-        <button data-v="caballo">Galope</button>
-        <button data-v="chiguire">Agua del estero</button>
-      </div>
-      <div id="quizResult" class="quiz-result"></div>
-      <button id="quizBtn" class="btn btn-red" style="margin-top:12px">Ver resultado</button>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- LOGIN + PERSONAJE PRINCIPAL (RESERVADO) -->
-<section id="login" class="login-section">
-  <div class="login-wrap">
-    <div class="login-card">
-      <p class="label">Acceso Llanero • Próximamente</p>
-      <h2>Tu <em>personaje</em> llanero</h2>
-      <p class="login-desc">Aquí vivirá el protagonista que me enviarás. Quedará anclado al login y acompañará al usuario en toda la travesía. Por ahora, un llanero placeholder te espera.</p>
-      <div class="personaje-slot" id="personajeSlot">
-        <!-- Placeholder que será reemplazado por tu PNG/SVG -->
-        <img src="personaje.png" alt="Personaje Principal" id="personajeImg" onerror="this.style.display='none'; document.getElementById('personajePlaceholder').style.display='grid'">
-        <div id="personajePlaceholder" class="personaje-placeholder">
-          <div class="ph-avatar">🤠</div>
-          <p><b>Espacio reservado</b><br>Tu personaje aquí</p>
-          <small>Envía tu PNG transparente (recomendado 600x800)<br>y lo integro con animación de entrada</small>
+  <!-- 05 Llanito IA / Manifiesto -->
+  <section class="stage" data-stage="4" style="--bg:#FFFBF0; --accent:#1B6B2A">
+    <div class="stage-number">05</div>
+    <div class="stage-text">
+      <p class="eyebrow">Nuestra IA favorita es <b>llanera</b></p>
+      <h1>Llanito<br><span class="accent">IA</span></h1>
+      <p class="desc">La sabana es infinita. La IA también. <b>LLANITO IA</b> nace para conectar el llano con el futuro: cultura, fauna, coleo, joropo y datos que cuidan el territorio. <br><br><em style="font-family:'Instrument Serif',serif;font-size:18px;color:#1B6B2A">"Digital es nuestro llano favorito para desearte un feliz futuro."</em></p>
+      <div class="cta-row">
+        <button class="btn btn-red" id="btnComenzar">Entrar a la sabana →</button>
+        <button class="btn btn-ghost" id="btnVerModulos">Ver módulos</button>
+      </div>
+      <div class="meta"><span>Hackatón 2026</span><span>•</span><span>Hecho con polvo y código</span></div>
+    </div>
+    <div class="stage-art">
+      <div class="art-card manifesto">
+        <div class="manifesto-grid">
+          <div class="m-item">🤠<b>Llanero</b><span>Personaje principal</span></div>
+          <div class="m-item">🦩<b>Fauna</b><span>8 guardianes</span></div>
+          <div class="m-item">🎵<b>Joropo</b><span>Arpa viva</span></div>
+          <div class="m-item">🫔<b>Sabores</b><span>Brasa y leña</span></div>
+          <div class="m-item">🗺️<b>Mapa</b><span>Esteros reales</span></div>
+          <div class="m-item">🌌<b>Leyendas</b><span>Noche mística</span></div>
         </div>
-        <div class="ph-shadow"></div>
-      </div>
-      <div class="login-actions">
-        <button class="btn btn-red" id="btnLoginDemo">Ingresar como Llanero →</button>
-        <button class="btn btn-glass" id="btnCambiarPersonaje" style="color:#0A1A2F;border-color:#E8DDD0;background:#fff">Subir personaje</button>
-      </div>
-      <p class="login-note">El login guardará el personaje en localStorage y lo mostrará en el nav cuando inicies sesión.</p>
-    </div>
-    <div class="login-info">
-      <h3>¿Cómo funcionará?</h3>
-      <ul>
-        <li><b>Paso 1:</b> Me envías tu personaje (PNG/SVG).</li>
-        <li><b>Paso 2:</b> Lo coloco aquí con animación de respiración y parallax.</li>
-        <li><b>Paso 3:</b> Al hacer login, el personaje queda fijo en la esquina (tipo compañero).</li>
-        <li><b>Extra:</b> Puedo hacer que salude, galope o cambie de traje según el ciclo del día.</li>
-      </ul>
-      <div class="login-mini-gallery">
-        <div class="mini-ph">🤠<span>Llanero</span></div>
-        <div class="mini-ph">👩‍🌾<span>Llanera</span></div>
-        <div class="mini-ph">🧒<span>Vaquero</span></div>
+        <p class="manifesto-note">Inspirado en lesanimals.digital • Recreado para el llano. Arrastra o mantén espacio para viajar.</p>
+        <div class="space-demo"><span class="space-key">ESPACIO</span><span>↔ mantén para expandir</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- SABANA SONORA -->
-<section class="sonora">
-  <h3>Sabana Sonora — Cierra los ojos</h3>
-  <p>Activa el sonido y deja que el llano te abrace.</p>
-  <div class="sonora-controls">
-    <button class="s-btn" data-sound="viento">🍃 Viento</button>
-    <button class="s-btn" data-sound="aves">🦩 Aves</button>
-    <button class="s-btn" data-sound="grillos">🦗 Grillos</button>
-    <button class="s-btn" data-sound="joropo">🎵 Joropo</button>
-  </div>
-</section>
+<!-- PROGRESS -->
+<div class="progress"><span id="progressBar"></span></div>
 
-<footer class="footer">
-  <p><b>Llano Eterno</b> — Hackatón 2026 • Hecho con ❤️ llanero • Inspiración: Corocora Roja</p>
-  <p class="footer-sub">Tip: Salva tu foto como <code>corocora.jpg</code> junto a index.html para verla real en el hero y galería.</p>
-  <div class="footer-paleta"><span style="background:#FF1A1A"></span><span style="background:#FF8C2A"></span><span style="background:#FFD23F"></span><span style="background:#2A6B2A"></span><span style="background:#0A1A2F"></span></div>
+<!-- FOOTER MINI -->
+<footer class="mini-footer">
+  <span>LLANITO IA • 2026</span>
+  <span>Meta • Casanare • Arauca • Vichada</span>
+  <span><a href="mailto:hola@llanito.ia">hola@llanito.ia</a></span>
 </footer>
 
-<!-- MODAL -->
-<div id="modal" class="modal"><div class="modal-box"><button id="modalClose">✕</button><div id="modalContent"></div></div></div>
+<!-- LOGIN MODAL (personaje reservado) -->
+<div id="loginModal" class="login-modal">
+  <div class="login-box">
+    <button class="login-close" id="loginClose">✕</button>
+    <h3>Tu personaje llanero</h3>
+    <p>Espacio reservado para el protagonista que me enviarás. Quedará anclado al login.</p>
+    <div class="personaje-slot small">
+      <img src="personaje.png" alt="Personaje" onerror="this.style.display='none'">
+      <div class="ph">🤠<small>Tu personaje aquí</small></div>
+    </div>
+    <input id="loginName" placeholder="Tu nombre llanero" maxlength="18">
+    <button class="btn btn-red" id="loginGo">Ingresar →</button>
+    <p class="login-hint">Guarda tu PNG como <code>personaje.png</code> y aparecerá aquí.</p>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
