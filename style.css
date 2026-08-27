@@ -1,0 +1,105 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Space Grotesk',sans-serif;background:#0A0F1E;color:#fff;cursor:grab}
+body:active{cursor:grabbing}
+a{color:inherit;text-decoration:none}
+
+/* TOP like Les Animals */
+.top{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;font-size:11px;letter-spacing:.6px;text-transform:uppercase;font-weight:500}
+.logo{font-weight:700;letter-spacing:1px;font-size:13px}
+.logo b{font-weight:700;color:#FF1A1A}
+.top-right{display:flex;gap:14px;align-items:center;opacity:.9}
+.top-right a:hover{opacity:1}
+.btn-dashboard{background:#fff;color:#0A0F1E;border:none;padding:7px 12px;border-radius:999px;font-weight:700;font-size:11px;letter-spacing:.6px;text-transform:uppercase;cursor:pointer}
+.btn-dashboard:hover{background:#FF1A1A;color:#fff}
+
+/* COUNTER left vertical like Les Animals 1 2 3 4 5 — */
+.counter{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace}
+.c-dot{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.7);font-size:11px;cursor:pointer;display:grid;place-items:center;transition:.25s}
+.c-dot.active{background:#fff;color:#0A0F1E;border-color:#fff}
+.c-line{position:absolute;left:50%;top:-10px;bottom:-10px;width:1px;background:rgba(255,255,255,0.12);transform:translateX(-50%);z-index:-1;pointer-events:none}
+#cProgress{position:absolute;top:0;left:0;width:100%;background:#fff;transition:height .5s}
+
+/* HINTS */
+.hint{position:fixed;left:50%;transform:translateX(-50%);z-index:10;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;text-align:center;line-height:1.4}
+.hint-top{top:68px;opacity:.7}
+.hint-bottom{bottom:68px;background:#fff;color:#0A0F1E;padding:8px 14px;border-radius:999px;font-weight:700;letter-spacing:.8px;transition:.2s;box-shadow:0 6px 18px rgba(0,0,0,0.25)}
+.hint-bottom span{opacity:.6;font-weight:400}
+#hintMain{opacity:1}
+
+/* SCENE */
+#scene{position:relative;width:100vw;height:100vh;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse 900px 600px at 50% 55%, #16244A 0%, #0A0F1E 68%)}
+.center{text-align:center;position:relative;z-index:2;width:100%;max-width:900px;padding:0 24px}
+.kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:.7;font-weight:500}
+.kicker span{font-style:italic;opacity:.8}
+.word{font-family:'Instrument Serif',serif;font-size:clamp(48px, 10vw, 110px);line-height:.85;font-weight:400;letter-spacing:0.02em;margin:12px 0 14px;display:flex;justify-content:center;gap:0.18em;transition:gap .18s, letter-spacing .18s;flex-wrap:wrap}
+.word .w{display:inline-block;transition:transform .35s, opacity .35s}
+.subkicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.6}
+.animal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);pointer-events:none;opacity:.28;z-index:1;transition:.5s}
+.animal-svg{width:320px;height:200px;filter:drop-shadow(0 8px 18px rgba(0,0,0,0.4))}
+
+/* TICKER bottom like Les Animals */
+.ticker{position:fixed;bottom:36px;left:0;right:0;z-index:9;overflow:hidden;white-space:nowrap;opacity:.22;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);padding:6px 0}
+.ticker-track{display:flex;gap:32px;animation:marquee 22s linear infinite;will-change:transform}
+.ticker-track span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-25%)}}
+
+.stage-indicator{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:10;font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.5;letter-spacing:1px}
+.foot{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;padding:10px 24px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.7px;text-transform:uppercase;opacity:.4}
+
+/* DASHBOARD */
+.dashboard{position:fixed;inset:0;z-index:15;background:#0A0F1E;display:none;overflow-y:auto;padding:78px 28px 28px}
+.dashboard.open{display:block;animation:dashIn .45s ease-out}
+@keyframes dashIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.dashboard-head{display:flex;justify-content:space-between;align-items:start;gap:16px;max-width:1100px;margin:0 auto 18px}
+.dash-kicker{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.5}
+.dashboard-head h2{font-family:'Instrument Serif',serif;font-size:42px;line-height:.9}
+.dashboard-head h2 em{color:#FF1A1A;font-style:italic}
+.dash-desc{font-size:13px;opacity:.7;max-width:520px;margin-top:8px;line-height:1.5}
+.dash-close{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:18px;cursor:pointer;flex-shrink:0}
+.dash-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dash-card{background:#fff;color:#0A0F1E;border-radius:18px;padding:16px;border:1px solid #E8DDD0;display:flex;flex-direction:column;gap:8px;transition:.25s;position:relative;overflow:hidden}
+.dash-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.18);border-color:#0A0F1E}
+.dash-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:color-mix(in srgb, var(--c) 16%, white);border:1px solid color-mix(in srgb, var(--c) 30%, white)}
+.dash-card h3{font-size:15px;font-weight:700}
+.dash-card p{font-size:12px;opacity:.7;line-height:1.4;flex:1}
+.dash-cta{margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--c)}
+.dash-login{border:2px dashed #C8B898;background:linear-gradient(180deg,#FFF8E0,#FFFBF0);cursor:pointer}
+.dash-more{background:linear-gradient(135deg,#0A0F1E,#1A2A44);color:#fff;border-color:rgba(255,255,255,0.12)}
+.dash-more p{opacity:.7;color:#fff}
+.dash-more .dash-cta{color:#FFD23F}
+.dash-foot{max-width:1100px;margin:14px auto 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.6px;text-transform:uppercase;opacity:.4}
+@media(max-width:980px){.dash-grid{grid-template-columns:repeat(2,1fr)} .dashboard{padding-top:72px}}
+@media(max-width:560px){.dash-grid{grid-template-columns:1fr}}
+
+/* LOGIN FAB */
+.login-fab{position:fixed;right:22px;bottom:88px;z-index:11;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);color:#fff;font-size:18px;cursor:pointer}
+.login-modal{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);display:none;place-items:center;z-index:20;padding:16px}
+.login-modal.open{display:grid}
+.login-box{background:#fff;color:#0A0F1E;border-radius:16px;padding:20px;max-width:380px;width:100%;text-align:center;position:relative}
+.login-close{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:1px solid #E8DDD0;background:#fff;cursor:pointer}
+.login-box h3{font-family:'Instrument Serif',serif;font-size:22px}
+.login-box p{font-size:12px;opacity:.7;margin:6px 0}
+.ph-slot{height:160px;border-radius:12px;background:linear-gradient(180deg,#E0F0FF,#FFE8B0);border:1.5px dashed #C8B898;display:grid;place-items:center;margin:10px 0;position:relative;overflow:hidden}
+.ph-slot img{max-height:90%;max-width:88%;object-fit:contain;position:absolute;inset:0;margin:auto}
+.ph-slot span{font-size:44px}
+.login-box input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid #E8DDD0;font-size:13px}
+.btn-red{margin-top:10px;background:#FF1A1A;color:#fff;border:none;padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer;width:100%}
+
+/* HOLDING state */
+body.holding .word{gap:0.45em;letter-spacing:0.08em}
+body.holding .animal{opacity:.42;transform:translate(-50%,-50%) scale(1.06)}
+body.holding .hint-bottom{background:#FF1A1A;color:#fff}
+
+/* drag stretch */
+body.dragging .word{transition:none}
+
+@media(max-width:640px){
+  .top{padding:12px 14px}
+  .counter{left:10px;gap:8px}
+  .c-dot{width:24px;height:24px;font-size:10px}
+  .word{font-size:clamp(36px, 12vw, 72px);gap:0.12em}
+  .animal-svg{width:240px}
+  .ticker{display:none}
+  .stage-indicator{right:12px}
+}
