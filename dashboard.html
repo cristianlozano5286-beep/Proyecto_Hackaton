@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--red:#FF1A1A;--black:#0A0F1E;--paper:#FFFBF0;--muted:#6B7280}
+:root{--red:#FF1A1A;--ocre:#FF8C2A;--amarillo:#FFD23F;--verde:#1B6B2A;--verde2:#2A8A3A;--tierra:#8B4513;--black:#0A0F1E;--paper:#FFFBF0;--muted:#6B7280;--cielo1:#FF6B35;--cielo2:#FFB067}
 html{scroll-behavior:smooth}
 body{font-family:'Space Grotesk',sans-serif;background:#fff;color:var(--black);line-height:1.4}
 a{color:inherit;text-decoration:none}
@@ -103,8 +103,60 @@ img{max-width:100%}
 /* FOOTER */
 .footer{border-top:1px solid #E5E7EB;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1280px;margin:0 auto;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.6;letter-spacing:.6px;text-transform:uppercase}
 .footer a:hover{opacity:1}
+/* PAISAJE VIVO ANIMADO */
+.paisaje-vivo{max-width:1280px;margin:0 auto;padding:28px 20px}
+.paisaje-head{display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap;margin-bottom:14px}
+.paisaje-head h2{font-family:'Instrument Serif',serif;font-size:28px;line-height:.9}
+.paisaje-head h2 em{color:var(--red);font-style:italic}
+.paisaje-desc{font-size:12px;opacity:.6;margin-top:6px}
+.paisaje-controls{display:flex;gap:8px;flex-wrap:wrap}
+.paisaje-stage{position:relative;height:420px;border-radius:22px;overflow:hidden;background:#0A0F1E;box-shadow:0 14px 36px rgba(0,0,0,0.18);cursor:pointer;border:2px solid var(--ocre)}
+.p-sky{position:absolute;inset:0;transition:1s;background:linear-gradient(180deg,#0A1A2F 0%, #1A2E6A 20%, #FF6B35 62%, #FF8E53 74%, #FFB067 85%, #FFD6A0 100%)}
+.paisaje-stage[data-time="amanecer"] .p-sky{background:linear-gradient(180deg,#1B2E6A 0%, #2A4A8A 20%, #FF9A5A 58%, #FFC27A 78%, #FFE8B0 100%)}
+.paisaje-stage[data-time="mediodia"] .p-sky{background:linear-gradient(180deg,#1E90FF 0%, #87CEEB 55%, #FFD93F 88%, #FFF6A0 100%)}
+.paisaje-stage[data-time="noche"] .p-sky{background:linear-gradient(180deg,#050E20 0%, #0A1A35 32%, #16244A 64%, #1C2E5A 100%)}
+.p-sun{position:absolute;left:58%;top:18%;width:90px;height:90px;background:radial-gradient(circle at 30% 30%, #FFF6A0, #FFD23F 45%, #FF8C2A 75%);border-radius:50%;box-shadow:0 0 28px rgba(255,210,63,0.9),0 0 60px rgba(255,107,53,0.5);transition:.6s}
+.paisaje-stage[data-time="noche"] .p-sun{opacity:0;transform:scale(0.5)}
+.paisaje-stage[data-time="mediodia"] .p-sun{left:50%;top:12%;width:110px;height:110px;box-shadow:0 0 40px rgba(255,255,255,0.6)}
+.p-moon{position:absolute;left:60%;top:16%;font-size:52px;opacity:0;transition:.6s;filter:drop-shadow(0 0 12px rgba(255,255,255,0.6))}
+.paisaje-stage[data-time="noche"] .p-moon{opacity:1}
+.p-cloud{position:absolute;background:rgba(255,255,255,0.92);height:14px;border-radius:999px;filter:blur(.3px)}
+.p-cloud.c1{width:180px;left:6%;top:18%;animation:cloudDrift 18s ease-in-out infinite}
+.p-cloud.c2{width:140px;left:38%;top:12%;opacity:.7;animation:cloudDrift 22s ease-in-out infinite reverse}
+.p-cloud.c3{width:220px;left:66%;top:24%;opacity:.55;animation:cloudDrift 26s ease-in-out infinite}
+@keyframes cloudDrift{0%,100%{transform:translateX(-12px)}50%{transform:translateX(12px)}}
+.paisaje-stage[data-time="noche"] .p-cloud{opacity:.12}
+.p-birds{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pb{position:absolute;left:-8%;font-size:20px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));animation:birdFly linear infinite}
+.pb:nth-child(1){top:18%;animation-duration:11s}
+.pb:nth-child(2){top:24%;animation-duration:14s;animation-delay:1.5s;font-size:16px}
+.pb:nth-child(3){top:30%;animation-duration:12s;animation-delay:3s}
+.pb:nth-child(4){top:36%;animation-duration:15s;animation-delay:.8s;font-size:18px}
+.pb:nth-child(5){top:20%;animation-duration:13s;animation-delay:4s}
+@keyframes birdFly{0%{transform:translateX(0) translateY(0)}50%{transform:translateX(55vw) translateY(-8px)}100%{transform:translateX(110vw) translateY(0)}}
+.p-morichales{position:absolute;left:0;right:0;bottom:78px;height:110px;background:radial-gradient(ellipse 60px 18px at 8% 100%, #0A1A10 60%, transparent 61%),radial-gradient(ellipse 80px 22px at 20% 100%, #0F2A12 60%, transparent 61%),radial-gradient(ellipse 70px 18px at 36% 100%, #0A1A10 60%, transparent 61%),radial-gradient(ellipse 90px 24px at 56% 100%, #0F2410 60%, transparent 61%),radial-gradient(ellipse 78px 20px at 74% 100%, #0F2A12 60%, transparent 61%),radial-gradient(ellipse 88px 24px at 90% 100%, #0A1A10 60%, transparent 61%);animation:moricheSway 3.5s ease-in-out infinite}
+@keyframes moricheSway{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+.p-ground{position:absolute;left:0;right:0;bottom:0;height:78px;background:linear-gradient(to top,#1B4A1A,#2A6B2A 55%,#3A8A2E 100%);border-top:3px solid var(--amarillo)}
+.p-ground::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,0.07) 14px 15px);animation:grassWave 2.4s ease-in-out infinite}
+@keyframes grassWave{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.p-estero{position:absolute;left:20%;right:20%;bottom:14px;height:22px;background:linear-gradient(90deg, rgba(46,134,171,0.9), rgba(93,173,226,0.9));border-radius:999px;opacity:.85;animation:esteroRipple 2.8s ease-in-out infinite}
+@keyframes esteroRipple{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.04)}}
+.p-horses{position:absolute;left:0;right:0;bottom:78px;height:40px;pointer-events:none;overflow:hidden}
+.ph{position:absolute;bottom:4px;font-size:28px;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.35));animation:horseRun linear infinite}
+.ph:nth-child(1){animation-duration:8s}
+.ph:nth-child(2){animation-duration:10s;animation-delay:1.8s;font-size:24px}
+.ph:nth-child(3){animation-duration:9s;animation-delay:3.5s;font-size:26px}
+@keyframes horseRun{0%{transform:translateX(-12%)}100%{transform:translateX(112vw)}}
+#pCanvas{position:absolute;inset:0;pointer-events:none}
+.p-info{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;color:#fff;background:rgba(0,0,0,0.32);backdrop-filter:blur(8px);padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.18)}
+.p-info h3{font-family:'Instrument Serif',serif;font-size:16px}
+.p-info p{font-size:11px;opacity:.9;margin-top:4px}
+.paisaje-palette{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.paisaje-palette span{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.paisaje-palette small{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.5}
+
 @media(max-width:1020px){.hero{grid-template-columns:1fr}.grid-speakers{grid-template-columns:repeat(2,1fr)}.creativity{grid-template-columns:repeat(2,1fr)}.news-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.header{padding:10px 14px}.nav{display:none}.mobile-menu{display:block}.hero-left h1{font-size:40px}.grid-speakers{grid-template-columns:1fr}.creativity{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.mailing-form{flex-direction:column}}
+@media(max-width:560px){.header{padding:10px 14px}.nav{display:none}.mobile-menu{display:block}.hero-left h1{font-size:40px}.grid-speakers{grid-template-columns:1fr}.creativity{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.mailing-form{flex-direction:column}.paisaje-stage{height:340px}.paisaje-head h2{font-size:22px}}
 </style>
 </head>
 <body>
@@ -148,6 +200,47 @@ img{max-width:100%}
         <div><strong>5</strong><span>Stages</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PAISAJE LLANERO ANIMADO — HTML/CSS/JS PURO -->
+<section class="paisaje-vivo" id="paisajeVivo">
+  <div class="paisaje-head">
+    <div>
+      <p class="kicker">Paisaje Vivo • HTML + CSS + JS</p>
+      <h2>Horizonte <em>animado</em> — Colores de la llaneridad</h2>
+      <p class="paisaje-desc">Rojo corocora <span style="color:var(--red)">#FF1A1A</span> • Ocre sabana <span style="color:var(--ocre)">#FF8C2A</span> • Amarillo sol <span style="color:var(--amarillo)">#FFD23F</span> • Verde morichal <span style="color:var(--verde)">#1B6B2A</span> • Todo animado sin librerías.</p>
+    </div>
+    <div class="paisaje-controls">
+      <button class="chip active" data-time="atardecer">🌇 Atardecer</button>
+      <button class="chip" data-time="amanecer">🌅 Amanecer</button>
+      <button class="chip" data-time="mediodia">☀️ Mediodía</button>
+      <button class="chip" data-time="noche">🌌 Noche</button>
+    </div>
+  </div>
+  <div class="paisaje-stage" id="paisajeStage" data-time="atardecer">
+    <div class="p-sky"></div>
+    <div class="p-sun" id="pSun"></div>
+    <div class="p-moon" id="pMoon">🌕</div>
+    <div class="p-cloud c1"></div><div class="p-cloud c2"></div><div class="p-cloud c3"></div>
+    <div class="p-birds" id="pBirds">
+      <span class="pb">🦩</span><span class="pb">🦩</span><span class="pb">🦩</span><span class="pb">🦩</span><span class="pb">🦩</span>
+    </div>
+    <div class="p-morichales"></div>
+    <div class="p-ground"></div>
+    <div class="p-estero"></div>
+    <div class="p-horses" id="pHorses">
+      <span class="ph">🐎</span><span class="ph">🐎</span><span class="ph">🐎</span>
+    </div>
+    <canvas id="pCanvas"></canvas>
+    <div class="p-info">
+      <h3 id="pTitle">Atardecer Llanero — 18:23</h3>
+      <p>Mueve el mouse para la brisa • Click para bandada • Colores 100% llaneros</p>
+    </div>
+  </div>
+  <div class="paisaje-palette">
+    <span style="background:var(--red)"></span><span style="background:var(--ocre)"></span><span style="background:var(--amarillo)"></span><span style="background:var(--verde)"></span><span style="background:var(--tierra)"></span><span style="background:var(--black)"></span>
+    <small>Paleta Llanera • Rojo Corocora • Ocre • Amarillo • Verde Morichal • Tierra</small>
   </div>
 </section>
 
@@ -288,6 +381,66 @@ img{max-width:100%}
 </div>
 <script>
 document.querySelectorAll('.chip').forEach(c=> c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active')});
+// Paisaje vivo JS — colores llaneros + animaciones
+const paisajeStage=document.getElementById('paisajeStage');
+const pSun=document.getElementById('pSun');
+const pCanvas=document.getElementById('pCanvas');
+const pCtx=pCanvas? pCanvas.getContext('2d'):null;
+const pTitle=document.getElementById('pTitle');
+const timeLabels={amanecer:'Amanecer Llanero — 05:45', mediodia:'Mediodía Sabanero — 12:00', atardecer:'Atardecer Llanero — 18:23', noche:'Noche Llanera — 21:40'};
+function resizeP(){ if(pCanvas && paisajeStage){ pCanvas.width=paisajeStage.offsetWidth; pCanvas.height=paisajeStage.offsetHeight; } }
+window.addEventListener('resize',resizeP); resizeP();
+let pMode='atardecer';
+// canvas luciérnagas/polvo
+let pParticles=[];
+function randP(){ return {x:Math.random()*pCanvas.width, y:Math.random()*pCanvas.height, r:Math.random()*1.6+0.6, vx:(Math.random()-0.5)*0.35, vy:(Math.random()-0.5)*0.25, a:Math.random()*0.5+0.2};}
+for(let i=0;i<36;i++) pParticles.push(randP());
+function pLoop(){
+  if(!pCtx) return;
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  pParticles.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>pCanvas.width) p.vx*=-1;
+    if(p.y<0||p.y>pCanvas.height) p.vy*=-1;
+    if(pMode==='noche'){
+      pCtx.fillStyle='rgba(255,242,120,0.85)';
+      pCtx.shadowColor='#FFD23F'; pCtx.shadowBlur=8;
+      pCtx.beginPath(); pCtx.arc(p.x,p.y,p.r*1.4,0,Math.PI*2); pCtx.fill(); pCtx.shadowBlur=0;
+    } else {
+      pCtx.fillStyle=`rgba(255,255,255,${p.a*0.18})`;
+      pCtx.beginPath(); pCtx.arc(p.x,p.y,p.r,0,Math.PI*2); pCtx.fill();
+    }
+  });
+  requestAnimationFrame(pLoop);
+}
+pLoop();
+// controles tiempo
+document.querySelectorAll('.paisaje-controls .chip').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.paisaje-controls .chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    pMode=btn.dataset.time;
+    paisajeStage.setAttribute('data-time',pMode);
+    pTitle.textContent=timeLabels[pMode];
+  };
+});
+// mouse parallax + click bandada
+if(paisajeStage){
+  paisajeStage.addEventListener('mousemove',e=>{
+    const rect=paisajeStage.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width -0.5;
+    const y=(e.clientY-rect.top)/rect.height -0.5;
+    pSun.style.transform=`translate(${x*12}px, ${y*8}px)`;
+    document.getElementById('pMoon').style.transform=`translate(${x*12}px, ${y*8}px)`;
+    document.getElementById('pBirds').style.transform=`translate(${x*8}px, ${y*4}px)`;
+  });
+  paisajeStage.addEventListener('click',()=>{
+    const birds=document.querySelectorAll('.pb');
+    birds.forEach(b=>{ b.style.animation='none'; void b.offsetWidth; b.style.animation='birdFly 2s ease-in forwards'; setTimeout(()=> b.style.animation='birdFly 12s linear infinite',2100); });
+    // burst
+    for(let i=0;i<6;i++) pParticles.push(randP());
+  });
+}
 </script>
 </body>
 </html>
