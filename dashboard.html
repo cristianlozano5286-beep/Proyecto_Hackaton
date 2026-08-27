@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLANITO IA — Dashboard | Adobe MAX inspired</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#FF1A1A;--ocre:#FF8C2A;--amarillo:#FFD23F;--verde:#1B6B2A;--verde2:#2A8A3A;--tierra:#8B4513;--black:#0A0F1E;--paper:#FFFBF0;--muted:#6B7280;--cielo1:#FF6B35;--cielo2:#FFB067}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:#fff;color:var(--black);line-height:1.4}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+/* HEADER like Adobe MAX */
+.header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #E5E7EB}
+.header-top{max-width:1280px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.5px;font-size:15px}
+.logo b{color:var(--red)}
+.logo small{font-weight:400;font-size:10px;opacity:.6;letter-spacing:.8px}
+.nav{display:flex;gap:18px;align-items:center;font-size:11px;letter-spacing:.7px;text-transform:uppercase;font-weight:600;opacity:.85}
+.nav a{padding:6px 8px;border-radius:6px}
+.nav a:hover{background:#F3F4F6}
+.nav .has-dropdown{position:relative}
+.header-actions{display:flex;gap:10px;align-items:center}
+.btn{padding:9px 16px;border-radius:999px;font-weight:700;font-size:12px;cursor:pointer;border:none}
+.btn-ghost{background:#fff;border:1px solid #E5E7EB}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#E60000}
+.mobile-menu{display:none}
+/* HERO like Adobe MAX */
+.hero{max-width:1280px;margin:0 auto;padding:32px 20px 28px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.hero-left h1{font-family:'Instrument Serif',serif;font-size:56px;line-height:.85;font-weight:400}
+.hero-left h1 em{color:var(--red);font-style:italic}
+.hero-left .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.6;margin-bottom:10px}
+.hero-left p{margin:14px 0 18px;max-width:520px;color:#333;font-size:14px;line-height:1.6}
+.hero-meta{display:flex;gap:12px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.7px;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+.hero-meta span{background:#F3F4F6;padding:6px 10px;border-radius:999px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.hero-right{position:relative}
+.hero-card{background:linear-gradient(135deg,#FF1A1A 0%, #FF8C2A 55%, #FFD23F 100%);border-radius:22px;padding:18px;color:#fff;box-shadow:0 18px 40px rgba(255,26,26,0.25);overflow:hidden;position:relative}
+.hero-card::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 400px 280px at 30% 20%, rgba(255,255,255,0.22), transparent 60%)}
+.hero-card h3{font-family:'Instrument Serif',serif;font-size:28px;line-height:.9;position:relative;z-index:1}
+.hero-card p{font-size:12px;opacity:.9;margin:8px 0 12px;position:relative;z-index:1}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative;z-index:1}
+.hero-stats div{background:rgba(255,255,255,0.14);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:10px;text-align:center}
+.hero-stats strong{display:block;font-size:18px}
+.hero-stats span{font-size:10px;opacity:.9;letter-spacing:.6px;text-transform:uppercase}
+/* FILTER BAR Adobe MAX session tracks */
+.tracks{max-width:1280px;margin:0 auto;padding:18px 20px}
+.tracks h2{font-family:'Instrument Serif',serif;font-size:22px;margin-bottom:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 14px;border-radius:999px;border:1px solid #E5E7EB;background:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:.2s}
+.chip.active,.chip:hover{background:var(--black);color:#fff;border-color:var(--black)}
+/* FEATURED SPEAKERS like Adobe MAX */
+.section{max-width:1280px;margin:0 auto;padding:24px 20px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:16px}
+.section-head h2{font-family:'Instrument Serif',serif;font-size:28px;line-height:.9}
+.section-head h2 em{color:var(--red);font-style:italic}
+.section-head a{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--red)}
+.grid-speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.speaker{background:#fff;border:1px solid #E5E7EB;border-radius:18px;overflow:hidden;transition:.25s}
+.speaker:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.1)}
+.speaker-img{height:170px;background:linear-gradient(180deg,#FFE8E0,#FFD0B0);display:grid;place-items:center;font-size:48px;position:relative;overflow:hidden}
+.speaker-img img{width:100%;height:100%;object-fit:cover}
+.speaker-body{padding:12px}
+.speaker-body h3{font-size:14px;font-weight:700}
+.speaker-body p{font-size:11px;opacity:.6;line-height:1.4;margin-top:4px}
+.speaker-tag{margin-top:8px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.7px;text-transform:uppercase;background:#F3F4F6;padding:4px 8px;border-radius:999px}
+/* CREATIVITY EVERYWHERE 4 cards */
+.creativity{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.crea-card{border-radius:18px;overflow:hidden;border:1px solid #E5E7EB;background:#fff;transition:.2s}
+.crea-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,0.08)}
+.crea-img{height:140px;display:grid;place-items:center;font-size:36px;position:relative}
+.crea-img span{position:relative;z-index:1}
+.crea-img::after{content:"";position:absolute;inset:0;opacity:.12;background:radial-gradient(circle at 30% 30%, white, transparent 60%)}
+.crea-body{padding:12px}
+.crea-body h3{font-size:13px;font-weight:700;line-height:1.3}
+.crea-body p{font-size:11px;opacity:.6;margin-top:6px;line-height:1.4}
+.crea-body a{margin-top:8px;display:inline-block;font-size:11px;font-weight:700;color:var(--red)}
+/* NEWS GRID 6 cards like Adobe MAX */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.news-card{border:1px solid #E5E7EB;border-radius:18px;overflow:hidden;background:#fff;transition:.2s}
+.news-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,0.08)}
+.news-img{height:150px;background:linear-gradient(135deg,#E0F0FF,#FFE8B0);display:grid;place-items:center;font-size:40px}
+.news-body{padding:14px}
+.news-kicker{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;opacity:.5}
+.news-body h3{font-size:14px;font-weight:700;margin:6px 0;line-height:1.3}
+.news-body p{font-size:11px;opacity:.6;line-height:1.5}
+.news-body a{margin-top:8px;display:inline-block;font-size:11px;font-weight:700;color:var(--red)}
+/* SPONSORS */
+.sponsors{border-top:1px solid #E5E7EB;border-bottom:1px solid #E5E7EB;padding:18px 0;margin-top:8px}
+.sponsors h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.5;text-align:center;margin-bottom:14px}
+.logos{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;opacity:.7;align-items:center}
+.logos span{font-weight:800;letter-spacing:1px;font-size:13px;border:1px solid #E5E7EB;padding:8px 14px;border-radius:10px;background:#fff}
+/* MAILING LIST */
+.mailing{max-width:640px;margin:28px auto;text-align:center;padding:0 20px}
+.mailing h3{font-family:'Instrument Serif',serif;font-size:22px}
+.mailing p{font-size:12px;opacity:.6;margin:8px 0 12px}
+.mailing-form{display:flex;gap:8px;justify-content:center}
+.mailing-form input{flex:1;max-width:320px;padding:10px 14px;border-radius:999px;border:1px solid #E5E7EB;font-size:13px}
+.mailing-form button{padding:10px 18px;border-radius:999px;background:var(--black);color:#fff;border:none;font-weight:700;cursor:pointer}
+/* FOOTER */
+.footer{border-top:1px solid #E5E7EB;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1280px;margin:0 auto;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.6;letter-spacing:.6px;text-transform:uppercase}
+.footer a:hover{opacity:1}
+/* PAISAJE VIVO ANIMADO */
+.paisaje-vivo{max-width:1280px;margin:0 auto;padding:28px 20px}
+.paisaje-head{display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap;margin-bottom:14px}
+.paisaje-head h2{font-family:'Instrument Serif',serif;font-size:28px;line-height:.9}
+.paisaje-head h2 em{color:var(--red);font-style:italic}
+.paisaje-desc{font-size:12px;opacity:.6;margin-top:6px}
+.paisaje-controls{display:flex;gap:8px;flex-wrap:wrap}
+.paisaje-stage{position:relative;height:420px;border-radius:22px;overflow:hidden;background:#0A0F1E;box-shadow:0 14px 36px rgba(0,0,0,0.18);cursor:pointer;border:2px solid var(--ocre)}
+.p-sky{position:absolute;inset:0;transition:1s;background:linear-gradient(180deg,#0A1A2F 0%, #1A2E6A 20%, #FF6B35 62%, #FF8E53 74%, #FFB067 85%, #FFD6A0 100%)}
+.paisaje-stage[data-time="amanecer"] .p-sky{background:linear-gradient(180deg,#1B2E6A 0%, #2A4A8A 20%, #FF9A5A 58%, #FFC27A 78%, #FFE8B0 100%)}
+.paisaje-stage[data-time="mediodia"] .p-sky{background:linear-gradient(180deg,#1E90FF 0%, #87CEEB 55%, #FFD93F 88%, #FFF6A0 100%)}
+.paisaje-stage[data-time="noche"] .p-sky{background:linear-gradient(180deg,#050E20 0%, #0A1A35 32%, #16244A 64%, #1C2E5A 100%)}
+.p-sun{position:absolute;left:58%;top:18%;width:90px;height:90px;background:radial-gradient(circle at 30% 30%, #FFF6A0, #FFD23F 45%, #FF8C2A 75%);border-radius:50%;box-shadow:0 0 28px rgba(255,210,63,0.9),0 0 60px rgba(255,107,53,0.5);transition:.6s}
+.paisaje-stage[data-time="noche"] .p-sun{opacity:0;transform:scale(0.5)}
+.paisaje-stage[data-time="mediodia"] .p-sun{left:50%;top:12%;width:110px;height:110px;box-shadow:0 0 40px rgba(255,255,255,0.6)}
+.p-moon{position:absolute;left:60%;top:16%;font-size:52px;opacity:0;transition:.6s;filter:drop-shadow(0 0 12px rgba(255,255,255,0.6))}
+.paisaje-stage[data-time="noche"] .p-moon{opacity:1}
+.p-cloud{position:absolute;background:rgba(255,255,255,0.92);height:14px;border-radius:999px;filter:blur(.3px)}
+.p-cloud.c1{width:180px;left:6%;top:18%;animation:cloudDrift 18s ease-in-out infinite}
+.p-cloud.c2{width:140px;left:38%;top:12%;opacity:.7;animation:cloudDrift 22s ease-in-out infinite reverse}
+.p-cloud.c3{width:220px;left:66%;top:24%;opacity:.55;animation:cloudDrift 26s ease-in-out infinite}
+@keyframes cloudDrift{0%,100%{transform:translateX(-12px)}50%{transform:translateX(12px)}}
+.paisaje-stage[data-time="noche"] .p-cloud{opacity:.12}
+.p-birds{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pb{position:absolute;left:-8%;font-size:20px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));animation:birdFly linear infinite}
+.pb:nth-child(1){top:18%;animation-duration:11s}
+.pb:nth-child(2){top:24%;animation-duration:14s;animation-delay:1.5s;font-size:16px}
+.pb:nth-child(3){top:30%;animation-duration:12s;animation-delay:3s}
+.pb:nth-child(4){top:36%;animation-duration:15s;animation-delay:.8s;font-size:18px}
+.pb:nth-child(5){top:20%;animation-duration:13s;animation-delay:4s}
+@keyframes birdFly{0%{transform:translateX(0) translateY(0)}50%{transform:translateX(55vw) translateY(-8px)}100%{transform:translateX(110vw) translateY(0)}}
+.p-morichales{position:absolute;left:0;right:0;bottom:78px;height:110px;background:radial-gradient(ellipse 60px 18px at 8% 100%, #0A1A10 60%, transparent 61%),radial-gradient(ellipse 80px 22px at 20% 100%, #0F2A12 60%, transparent 61%),radial-gradient(ellipse 70px 18px at 36% 100%, #0A1A10 60%, transparent 61%),radial-gradient(ellipse 90px 24px at 56% 100%, #0F2410 60%, transparent 61%),radial-gradient(ellipse 78px 20px at 74% 100%, #0F2A12 60%, transparent 61%),radial-gradient(ellipse 88px 24px at 90% 100%, #0A1A10 60%, transparent 61%);animation:moricheSway 3.5s ease-in-out infinite}
+@keyframes moricheSway{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+.p-ground{position:absolute;left:0;right:0;bottom:0;height:78px;background:linear-gradient(to top,#1B4A1A,#2A6B2A 55%,#3A8A2E 100%);border-top:3px solid var(--amarillo)}
+.p-ground::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,0.07) 14px 15px);animation:grassWave 2.4s ease-in-out infinite}
+@keyframes grassWave{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.p-estero{position:absolute;left:20%;right:20%;bottom:14px;height:22px;background:linear-gradient(90deg, rgba(46,134,171,0.9), rgba(93,173,226,0.9));border-radius:999px;opacity:.85;animation:esteroRipple 2.8s ease-in-out infinite}
+@keyframes esteroRipple{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.04)}}
+.p-horses{position:absolute;left:0;right:0;bottom:78px;height:40px;pointer-events:none;overflow:hidden}
+.ph{position:absolute;bottom:4px;font-size:28px;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.35));animation:horseRun linear infinite}
+.ph:nth-child(1){animation-duration:8s}
+.ph:nth-child(2){animation-duration:10s;animation-delay:1.8s;font-size:24px}
+.ph:nth-child(3){animation-duration:9s;animation-delay:3.5s;font-size:26px}
+@keyframes horseRun{0%{transform:translateX(-12%)}100%{transform:translateX(112vw)}}
+#pCanvas{position:absolute;inset:0;pointer-events:none}
+.p-info{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;color:#fff;background:rgba(0,0,0,0.32);backdrop-filter:blur(8px);padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.18)}
+.p-info h3{font-family:'Instrument Serif',serif;font-size:16px}
+.p-info p{font-size:11px;opacity:.9;margin-top:4px}
+.paisaje-palette{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.paisaje-palette span{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.paisaje-palette small{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.5}
+
+@media(max-width:1020px){.hero{grid-template-columns:1fr}.grid-speakers{grid-template-columns:repeat(2,1fr)}.creativity{grid-template-columns:repeat(2,1fr)}.news-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.header{padding:10px 14px}.nav{display:none}.mobile-menu{display:block}.hero-left h1{font-size:40px}.grid-speakers{grid-template-columns:1fr}.creativity{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.mailing-form{flex-direction:column}.paisaje-stage{height:340px}.paisaje-head h2{font-size:22px}}
+</style>
+</head>
+<body>
+<header class="header">
+  <a href="index.html" class="logo">LLANITO <b>IA</b> <small>• SABANA 2026</small></a>
+  <nav class="nav">
+    <a href="index.html">Inicio</a>
+    <a href="#modulos">Explorar ▾</a>
+    <a href="#speakers">Llaneros</a>
+    <a href="#tracks">Tracks ▾</a>
+    <a href="#noticias">Novedades</a>
+  </nav>
+  <div class="header-actions">
+    <a href="#" onclick="document.getElementById('loginModal').classList.add('open');return false;" style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;font-weight:600;">Sign in</a>
+    <a href="index.html" class="btn btn-red">Entrar a la Experiencia</a>
+  </div>
+  <button class="mobile-menu" onclick="document.querySelector('.nav').style.display=document.querySelector('.nav').style.display==='flex'?'none':'flex'">☰</button>
+</header>
+
+<!-- HERO like Adobe MAX -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">Nov 2026 • Casanare — Presencial y Online</p>
+    <h1>LLANITO IA —<br><em>La Sabana Creativa</em></h1>
+    <p>Hecho para crear. Tres días de sabana infinita, fauna viva, joropo con IA y conexiones que cruzan el horizonte. Inspirado en Adobe MAX, hecho para el llano.</p>
+    <div class="hero-meta">
+      <span>📍 Yopal + Online</span><span>🎟️ Entrada libre hackatón</span><span>🤠 Tu personaje te espera</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#modulos" class="btn btn-red">Explorar Dashboard →</a>
+      <a href="index.html" class="btn btn-ghost">Ver experiencia clon 1:1</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <h3>Hecho para<br>galopar sin fin</h3>
+      <p>Clon Les Animals + Dashboard Adobe MAX. Redirección a módulos lista.</p>
+      <div class="hero-stats">
+        <div><strong>8</strong><span>Módulos</span></div>
+        <div><strong>∞</strong><span>Horizonte</span></div>
+        <div><strong>5</strong><span>Stages</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAISAJE LLANERO ANIMADO — HTML/CSS/JS PURO -->
+<section class="paisaje-vivo" id="paisajeVivo">
+  <div class="paisaje-head">
+    <div>
+      <p class="kicker">Paisaje Vivo • HTML + CSS + JS</p>
+      <h2>Horizonte <em>animado</em> — Colores de la llaneridad</h2>
+      <p class="paisaje-desc">Rojo corocora <span style="color:var(--red)">#FF1A1A</span> • Ocre sabana <span style="color:var(--ocre)">#FF8C2A</span> • Amarillo sol <span style="color:var(--amarillo)">#FFD23F</span> • Verde morichal <span style="color:var(--verde)">#1B6B2A</span> • Todo animado sin librerías.</p>
+    </div>
+    <div class="paisaje-controls">
+      <button class="chip active" data-time="atardecer">🌇 Atardecer</button>
+      <button class="chip" data-time="amanecer">🌅 Amanecer</button>
+      <button class="chip" data-time="mediodia">☀️ Mediodía</button>
+      <button class="chip" data-time="noche">🌌 Noche</button>
+    </div>
+  </div>
+  <div class="paisaje-stage" id="paisajeStage" data-time="atardecer">
+    <div class="p-sky"></div>
+    <div class="p-sun" id="pSun"></div>
+    <div class="p-moon" id="pMoon">🌕</div>
+    <div class="p-cloud c1"></div><div class="p-cloud c2"></div><div class="p-cloud c3"></div>
+    <div class="p-birds" id="pBirds">
+      <span class="pb">🦩</span><span class="pb">🦩</span><span class="pb">🦩</span><span class="pb">🦩</span><span class="pb">🦩</span>
+    </div>
+    <div class="p-morichales"></div>
+    <div class="p-ground"></div>
+    <div class="p-estero"></div>
+    <div class="p-horses" id="pHorses">
+      <span class="ph">🐎</span><span class="ph">🐎</span><span class="ph">🐎</span>
+    </div>
+    <canvas id="pCanvas"></canvas>
+    <div class="p-info">
+      <h3 id="pTitle">Atardecer Llanero — 18:23</h3>
+      <p>Mueve el mouse para la brisa • Click para bandada • Colores 100% llaneros</p>
+    </div>
+  </div>
+  <div class="paisaje-palette">
+    <span style="background:var(--red)"></span><span style="background:var(--ocre)"></span><span style="background:var(--amarillo)"></span><span style="background:var(--verde)"></span><span style="background:var(--tierra)"></span><span style="background:var(--black)"></span>
+    <small>Paleta Llanera • Rojo Corocora • Ocre • Amarillo • Verde Morichal • Tierra</small>
+  </div>
+</section>
+
+<!-- TRACKS like Adobe MAX Explore session tracks -->
+<section class="tracks" id="tracks">
+  <h2>Explorar tracks. Descubre lo posible.</h2>
+  <div class="chips">
+    <button class="chip active">Todos</button>
+    <button class="chip">Fauna IA</button>
+    <button class="chip">Gastronomía</button>
+    <button class="chip">Joropo & Cultura</button>
+    <button class="chip">Leyendas</button>
+    <button class="chip">Mapa Esteros</button>
+    <button class="chip">Travesía</button>
+    <button class="chip">Turismo Sostenible</button>
+  </div>
+</section>
+
+<!-- FEATURED like Adobe MAX Featured speakers -->
+<section class="section" id="speakers">
+  <div class="section-head">
+    <h2>Guardianes <em>destacados</em>. Voces del llano.</h2>
+    <a href="index.html">Ver experiencia →</a>
+  </div>
+  <div class="grid-speakers">
+    <a href="index.html" class="speaker">
+      <div class="speaker-img" style="background:linear-gradient(180deg,#FFE8E0,#FFD0B0)">🦩</div>
+      <div class="speaker-body"><h3>Corocora Roja</h3><p>La llamarada del estero — Eudocimus ruber</p><span class="speaker-tag">Fauna • Amanecer</span></div>
+    </a>
+    <a href="index.html" class="speaker">
+      <div class="speaker-img" style="background:linear-gradient(180deg,#E8F5E9,#C8E8B8)">🐹</div>
+      <div class="speaker-body"><h3>Chigüiro</h3><p>Capibara gigante, familia de 20</p><span class="speaker-tag">Fauna • Mediodía</span></div>
+    </a>
+    <a href="index.html" class="speaker">
+      <div class="speaker-img" style="background:linear-gradient(180deg,#FFF3E0,#FFE0B0)">🐎</div>
+      <div class="speaker-body"><h3>Caballo Llanero</h3><p>Criollo indomable, latido de la sabana</p><span class="speaker-tag">Cultura • Galope</span></div>
+    </a>
+    <a href="index.html" class="speaker">
+      <div class="speaker-img" style="background:linear-gradient(180deg,#0A0F1E,#1A2A44);color:#fff">🐊</div>
+      <div class="speaker-body"><h3>Babilla</h3><p>Guardiana del caño, noche llanera</p><span class="speaker-tag">Noche • Misterio</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- CREATIVITY EVERYWHERE like Adobe MAX -->
+<section class="section" id="modulos">
+  <div class="section-head">
+    <h2>Sabana en todas partes.</h2>
+    <a href="index.html">Ver todos los módulos →</a>
+  </div>
+  <div class="creativity">
+    <div class="crea-card">
+      <div class="crea-img" style="background:linear-gradient(135deg,#FF1A1A,#FF8C2A)">🦩</div>
+      <div class="crea-body"><h3>Fauna Viva — Galería interactiva</h3><p>8 guardianes con SVG animado y sonido. Redirige a stage 01.</p><a href="index.html">Entrar →</a></div>
+    </div>
+    <div class="crea-card">
+      <div class="crea-img" style="background:linear-gradient(135deg,#1B6B2A,#6B8E23)">🗺️</div>
+      <div class="crea-body"><h3>Mapa Esteros — Territorio</h3><p>Meta, Casanare, Arauca, Vichada. Cada punto es un estero real.</p><a href="index.html">Explorar →</a></div>
+    </div>
+    <div class="crea-card">
+      <div class="crea-img" style="background:linear-gradient(135deg,#FFD23F,#FF8C2A)">🎵</div>
+      <div class="crea-body"><h3>Joropo IA — Toca la sabana</h3><p>Arpa, cuatro, maracas que suenan y generan versos.</p><a href="index.html">Tocar →</a></div>
+    </div>
+    <div class="crea-card">
+      <div class="crea-img" style="background:linear-gradient(135deg,#0A0F1E,#2A4A6B);color:#fff">🌌</div>
+      <div class="crea-body"><h3>Leyendas — Noche mística</h3><p>Silbón, Bola de Fuego. Niebla con canvas.</p><a href="index.html">Escuchar →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS GRID like Adobe MAX -->
+<section class="section" id="noticias">
+  <div class="section-head">
+    <h2>Novedades LLANITO IA. Mira lo que viene.</h2>
+    <a href="#">Ver todo →</a>
+  </div>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-img">🔥</div>
+      <div class="news-body"><p class="news-kicker">Gastronomía</p><h3>Mamona a la llanera: 4 horas de brasa</h3><p>Ritual de fuego, yuca y ají de leche. Módulo Sabores listo.</p><a href="#">Leer más →</a></div>
+    </div>
+    <div class="news-card">
+      <div class="news-img">🤠</div>
+      <div class="news-body"><p class="news-kicker">Personaje</p><h3>Tu llanero principal llega al login</h3><p>Espacio reservado. Envía tu PNG y quedará anclado al dashboard.</p><a href="#">Subir personaje →</a></div>
+    </div>
+    <div class="news-card">
+      <div class="news-img">🫔</div>
+      <div class="news-body"><p class="news-kicker">Sabores</p><h3>Hayaca y tungo: diciembre llanero</h3><p>Envueltos en hoja de plátano, listos para el módulo.</p><a href="#">Descubrir →</a></div>
+    </div>
+    <div class="news-card">
+      <div class="news-img">🐎</div>
+      <div class="news-body"><p class="news-kicker">Travesía</p><h3>Cabalgata horizontal día → noche</h3><p>Scroll storytelling con 4 horizontes.</p><a href="index.html">Cabalgar →</a></div>
+    </div>
+    <div class="news-card">
+      <div class="news-img">📱</div>
+      <div class="news-body"><p class="news-kicker">Dashboard</p><h3>Clon Les Animals + Adobe MAX</h3><p>Experiencia 1:1 + dashboard con redirección por módulos.</p><a href="index.html">Ver experiencia →</a></div>
+    </div>
+    <div class="news-card">
+      <div class="news-img">🌾</div>
+      <div class="news-body"><p class="news-kicker">Territorio</p><h3>Morichales infinitos</h3><p>El llano es nuestro espacio favorito para crear.</p><a href="#">Explorar →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section class="sponsors">
+  <h3>Aliados — Hacen posible la sabana</h3>
+  <div class="logos">
+    <span>CASANARE</span><span>META</span><span>ARAUCa</span><span>VICHADA</span><span>SENA</span><span>LLANITO IA</span>
+  </div>
+</section>
+
+<!-- MAILING -->
+<section class="mailing">
+  <h3>Únete a la sabana.</h3>
+  <p>Recibe novedades de LLANITO IA. Sin spam, solo polvo y joropo.</p>
+  <form class="mailing-form" onsubmit="event.preventDefault();alert('¡Gracias! Te avisaremos.');">
+    <input placeholder="Tu correo">
+    <button>Inscribirse</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <span>© 2026 LLANITO IA • Hecho con ❤️ llanero • Adobe MAX inspired + Les Animals tribute</span>
+  <span><a href="index.html">← Volver a la experiencia</a> • <a href="mailto:hola@llanito.ia">hola@llanito.ia</a></span>
+</footer>
+
+<!-- login modal -->
+<div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.45);backdrop-filter:blur(8px);display:none;place-items:center;z-index:50;padding:16px">
+  <div style="background:#fff;color:#0A0F1E;border-radius:16px;padding:20px;max-width:380px;width:100%;text-align:center;position:relative">
+    <button onclick="document.getElementById('loginModal').style.display='none'" style="position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:1px solid #E5E7EB;background:#fff;cursor:pointer">✕</button>
+    <h3 style="font-family:'Instrument Serif',serif;font-size:22px">Tu personaje</h3>
+    <p style="font-size:12px;opacity:.7">Guarda tu PNG como personaje.png</p>
+    <div style="height:140px;border-radius:12px;background:linear-gradient(180deg,#E0F0FF,#FFE8B0);border:1.5px dashed #C8B898;display:grid;place-items:center;margin:10px 0;font-size:40px">🤠</div>
+    <input id="dashName" placeholder="Tu nombre llanero" style="width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid #E5E7EB">
+    <button onclick="const n=document.getElementById('dashName').value.trim()||'Llanero';localStorage.setItem('llanito_user',n);alert('Bienvenido '+n+'!');document.getElementById('loginModal').style.display='none'" style="margin-top:10px;width:100%;background:#FF1A1A;color:#fff;border:none;padding:10px;border-radius:999px;font-weight:700;cursor:pointer">Entrar</button>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.chip').forEach(c=> c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active')});
+// Paisaje vivo JS — colores llaneros + animaciones
+const paisajeStage=document.getElementById('paisajeStage');
+const pSun=document.getElementById('pSun');
+const pCanvas=document.getElementById('pCanvas');
+const pCtx=pCanvas? pCanvas.getContext('2d'):null;
+const pTitle=document.getElementById('pTitle');
+const timeLabels={amanecer:'Amanecer Llanero — 05:45', mediodia:'Mediodía Sabanero — 12:00', atardecer:'Atardecer Llanero — 18:23', noche:'Noche Llanera — 21:40'};
+function resizeP(){ if(pCanvas && paisajeStage){ pCanvas.width=paisajeStage.offsetWidth; pCanvas.height=paisajeStage.offsetHeight; } }
+window.addEventListener('resize',resizeP); resizeP();
+let pMode='atardecer';
+// canvas luciérnagas/polvo
+let pParticles=[];
+function randP(){ return {x:Math.random()*pCanvas.width, y:Math.random()*pCanvas.height, r:Math.random()*1.6+0.6, vx:(Math.random()-0.5)*0.35, vy:(Math.random()-0.5)*0.25, a:Math.random()*0.5+0.2};}
+for(let i=0;i<36;i++) pParticles.push(randP());
+function pLoop(){
+  if(!pCtx) return;
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  pParticles.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>pCanvas.width) p.vx*=-1;
+    if(p.y<0||p.y>pCanvas.height) p.vy*=-1;
+    if(pMode==='noche'){
+      pCtx.fillStyle='rgba(255,242,120,0.85)';
+      pCtx.shadowColor='#FFD23F'; pCtx.shadowBlur=8;
+      pCtx.beginPath(); pCtx.arc(p.x,p.y,p.r*1.4,0,Math.PI*2); pCtx.fill(); pCtx.shadowBlur=0;
+    } else {
+      pCtx.fillStyle=`rgba(255,255,255,${p.a*0.18})`;
+      pCtx.beginPath(); pCtx.arc(p.x,p.y,p.r,0,Math.PI*2); pCtx.fill();
+    }
+  });
+  requestAnimationFrame(pLoop);
+}
+pLoop();
+// controles tiempo
+document.querySelectorAll('.paisaje-controls .chip').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.paisaje-controls .chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    pMode=btn.dataset.time;
+    paisajeStage.setAttribute('data-time',pMode);
+    pTitle.textContent=timeLabels[pMode];
+  };
+});
+// mouse parallax + click bandada
+if(paisajeStage){
+  paisajeStage.addEventListener('mousemove',e=>{
+    const rect=paisajeStage.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width -0.5;
+    const y=(e.clientY-rect.top)/rect.height -0.5;
+    pSun.style.transform=`translate(${x*12}px, ${y*8}px)`;
+    document.getElementById('pMoon').style.transform=`translate(${x*12}px, ${y*8}px)`;
+    document.getElementById('pBirds').style.transform=`translate(${x*8}px, ${y*4}px)`;
+  });
+  paisajeStage.addEventListener('click',()=>{
+    const birds=document.querySelectorAll('.pb');
+    birds.forEach(b=>{ b.style.animation='none'; void b.offsetWidth; b.style.animation='birdFly 2s ease-in forwards'; setTimeout(()=> b.style.animation='birdFly 12s linear infinite',2100); });
+    // burst
+    for(let i=0;i<6;i++) pParticles.push(randP());
+  });
+}
+</script>
+</body>
+</html>

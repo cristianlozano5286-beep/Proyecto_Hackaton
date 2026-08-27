@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLANITO IA — 2026 Wishes</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- TOP -->
+<header class="top">
+  <a href="#" class="logo">LLANITO <b>IA</b></a>
+  <div class="top-right">
+    <a href="#" class="lang">ES — EN</a>
+    <a href="mailto:hola@llanito.ia" class="contact">Contact</a>
+    <button class="btn-dashboard" id="btnDashboard">☰ Dashboard</button>
+  </div>
+</header>
+
+<!-- DASHBOARD OVERLAY (interface redirección módulos) -->
+<div class="dashboard" id="dashboard">
+  <div class="dashboard-head">
+    <div>
+      <p class="dash-kicker">LLANITO IA — Panel</p>
+      <h2>Elige tu <em>llano</em></h2>
+      <p class="dash-desc">Dashboard inspirado en Les Animals: cada tarjeta te lleva a un módulo vivo de la sabana. Tu personaje te acompaña.</p>
+    </div>
+    <button class="dash-close" id="dashClose">✕</button>
+  </div>
+  <div class="dash-grid">
+    <a class="dash-card" href="#" data-go="0">
+      <div class="dash-icon" style="--c:#FF1A1A">🦩</div>
+      <h3>Fauna Viva</h3><p>Corocora, chigüiro, garza. Galería con sonido.</p>
+      <span class="dash-cta">Entrar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#fauna">
+      <div class="dash-icon" style="--c:#1B6B2A">🗺️</div>
+      <h3>Mapa Esteros</h3><p>Meta, Casanare, Arauca, Vichada interactivo.</p>
+      <span class="dash-cta">Explorar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#travesia">
+      <div class="dash-icon" style="--c:#FF8C2A">🐎</div>
+      <h3>Travesía</h3><p>Cabalgata horizontal día → noche.</p>
+      <span class="dash-cta">Cabalgar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#sabores">
+      <div class="dash-icon" style="--c:#8B4513">🔥</div>
+      <h3>Sabores</h3><p>Mamona, hayaca, tungo. Ritual de brasa.</p>
+      <span class="dash-cta">Probar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#joropo">
+      <div class="dash-icon" style="--c:#2E86AB">🎵</div>
+      <h3>Joropo IA</h3><p>Arpa, cuatro, maracas que suenan.</p>
+      <span class="dash-cta">Tocar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#leyendas">
+      <div class="dash-icon" style="--c:#0A1A2F">🌌</div>
+      <h3>Leyendas</h3><p>Silbón, Bola de Fuego, Jinete.</p>
+      <span class="dash-cta">Escuchar →</span>
+    </a>
+    <div class="dash-card dash-login" id="dashLoginCard">
+      <div class="dash-icon" style="--c:#FFD23F">🤠</div>
+      <h3>Tu Personaje</h3><p id="dashLoginText">Ingresa y ancla tu llanero principal.</p>
+      <span class="dash-cta" id="dashLoginCta">Ingresar →</span>
+    </div>
+    <a class="dash-card dash-more" href="dashboard.html">
+      <div class="dash-icon" style="--c:#6B8E23">⚡</div>
+      <h3>Dashboard Completo</h3><p>Vista completa con todos los módulos.</p>
+      <span class="dash-cta">Abrir dashboard →</span>
+    </a>
+  </div>
+  <p class="dash-foot">Clon 1:1 Les Animals 2019 • LLANITO IA 2026 • Redirección por módulos lista para tus instrucciones</p>
+</div>
+
+<!-- LEFT COUNTER like Les Animals -->
+<nav class="counter" id="counter">
+  <button class="c-dot active" data-i="0">1</button>
+  <button class="c-dot" data-i="1">2</button>
+  <button class="c-dot" data-i="2">3</button>
+  <button class="c-dot" data-i="3">4</button>
+  <button class="c-dot" data-i="4">5</button>
+  <span class="c-line"><span id="cProgress"></span></span>
+</nav>
+
+<!-- HINTS exact Les Animals -->
+<div class="hint hint-top">Click & drag</div>
+<div class="hint hint-bottom" id="hintBottom">
+  <span id="hintMain">Hold the spacebar</span>
+  <span id="hintSub">to start</span>
+</div>
+
+<!-- CENTRAL STAGE - clon exacto -->
+<main id="scene">
+  <div class="center">
+    <p class="kicker" id="kicker">Un poco más <span>(o menos)</span></p>
+    <!-- WORD THAT STRETCHES like Les Animals "space space space" -->
+    <h1 class="word" id="word">
+      <span class="w">llano</span><span class="w">llano</span><span class="w">llano</span><span class="w">llano</span>
+    </h1>
+    <p class="subkicker" id="subkicker">Un poco menos de ruido</p>
+    <!-- Animal minimal detrás -->
+    <div class="animal" id="animal">
+      <!-- SVG se cambia por stage -->
+      <svg viewBox="0 0 220 140" class="animal-svg" id="animalSvg">
+        <!-- corocora minimal line -->
+        <path d="M 40 80 Q 80 40 120 58 Q 110 72 80 78 Q 60 84 40 80 Z" fill="none" stroke="white" stroke-width="1.4" opacity="0.9"/>
+        <path d="M 80 78 Q 100 32 130 48 Q 122 60 100 68 Z" fill="none" stroke="white" stroke-width="1.2"/>
+      </svg>
+    </div>
+  </div>
+</main>
+
+<!-- BOTTOM TICKER like Les Animals -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span>La sabana es nuestro llano favorito para desearte un feliz 2026 — LLANITO IA —</span>
+    <span>La sabana es nuestro llano favorito para desearte un feliz 2026 — LLANITO IA —</span>
+    <span>La sabana es nuestro llano favorito para desearte un feliz 2026 — LLANITO IA —</span>
+    <span>La sabana es nuestro llano favorito para desearte un feliz 2026 — LLANITO IA —</span>
+  </div>
+</div>
+
+<!-- RIGHT STAGE INDICATOR -->
+<div class="stage-indicator" id="stageIndicator">— 1</div>
+
+<!-- LOGIN / PERSONAJE (mismo módulo reservado pero integrado sin romper clon) -->
+<button class="login-fab" id="loginFab">👤</button>
+<div class="login-modal" id="loginModal">
+  <div class="login-box">
+    <button class="login-close" id="loginClose">✕</button>
+    <h3>Tu personaje llanero</h3>
+    <p>Espacio reservado. Guarda tu PNG como <code>personaje.png</code></p>
+    <div class="ph-slot"><img src="personaje.png" onerror="this.style.display='none'"><span>🤠</span></div>
+    <input id="loginName" placeholder="Tu nombre llanero">
+    <button class="btn-red" id="loginGo">Entrar</button>
+  </div>
+</div>
+
+<!-- FOOTER LINKS like Les Animals -->
+<footer class="foot">
+  <a href="#" id="footDashboard">Dashboard →</a>
+  <a href="#">LLANITO IA • Meta • Casanare • Arauca • Vichada</a>
+  <span>2026 Wishes — Recreación Les Animals 2019</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
