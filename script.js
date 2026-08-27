@@ -119,20 +119,55 @@ scene.addEventListener('touchend',e=>{
   if(dx>50) go(current-1);
 });
 
+// DASHBOARD
+const dashboard=document.getElementById('dashboard');
+const btnDashboard=document.getElementById('btnDashboard');
+const dashClose=document.getElementById('dashClose');
+const footDashboard=document.getElementById('footDashboard');
+function openDash(){ dashboard.classList.add('open'); dashboard.scrollTop=0; }
+function closeDash(){ dashboard.classList.remove('open'); }
+if(btnDashboard) btnDashboard.onclick=openDash;
+if(dashClose) dashClose.onclick=closeDash;
+if(footDashboard) footDashboard.onclick=(e)=>{ e.preventDefault(); openDash(); };
+if(dashboard) dashboard.onclick=e=>{ if(e.target===dashboard) closeDash(); };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') { closeDash(); document.getElementById('loginModal').classList.remove('open'); }});
+// redirecciones dentro del dashboard
+if(dashboard){
+  dashboard.querySelectorAll('.dash-card[data-go]').forEach(card=>{
+    card.addEventListener('click',e=>{
+      e.preventDefault();
+      const idx=parseInt(card.dataset.go);
+      closeDash();
+      go(idx);
+    });
+  });
+  const dashLoginCard=document.getElementById('dashLoginCard');
+  if(dashLoginCard) dashLoginCard.onclick=()=>{ closeDash(); document.getElementById('loginModal').classList.add('open'); };
+  // actualizar texto login en dashboard
+  const dashLoginText=document.getElementById('dashLoginText');
+  const dashLoginCta=document.getElementById('dashLoginCta');
+  const savedDash=localStorage.getItem('llanito_user');
+  if(savedDash && dashLoginText){ dashLoginText.textContent=`Bienvenido, ${savedDash} — tu llanero te espera`; dashLoginCta.textContent='Cambiar →'; }
+}
+
 // LOGIN
 const loginFab=document.getElementById('loginFab');
 const loginModal=document.getElementById('loginModal');
-loginFab.onclick=()=> loginModal.classList.add('open');
-document.getElementById('loginClose').onclick=()=> loginModal.classList.remove('open');
-loginModal.onclick=e=>{ if(e.target===loginModal) loginModal.classList.remove('open'); };
-document.getElementById('loginGo').onclick=()=>{
+if(loginFab) loginFab.onclick=()=> loginModal.classList.add('open');
+const lc=document.getElementById('loginClose');
+if(lc) lc.onclick=()=> loginModal.classList.remove('open');
+if(loginModal) loginModal.onclick=e=>{ if(e.target===loginModal) loginModal.classList.remove('open'); };
+const loginGo=document.getElementById('loginGo');
+if(loginGo) loginGo.onclick=()=>{
   const n=document.getElementById('loginName').value.trim()||'Llanero';
   loginFab.textContent='👤 '+n;
   loginFab.style.background='#FF1A1A';
   localStorage.setItem('llanito_user',n);
   loginModal.classList.remove('open');
+  const dashLoginText2=document.getElementById('dashLoginText');
+  if(dashLoginText2) dashLoginText2.textContent=`Bienvenido, ${n} — tu llanero te espera`;
 };
-const saved=localStorage.getItem('llanito_user');
-if(saved){ loginFab.textContent='👤 '+saved; loginFab.style.background='#FF1A1A'; }
+const saved2=localStorage.getItem('llanito_user');
+if(saved2 && loginFab){ loginFab.textContent='👤 '+saved2; loginFab.style.background='#FF1A1A'; }
 
-console.log('LLANITO IA 1:1 clon Les Animals listo');
+console.log('LLANITO IA 1:1 clon + dashboard redirección listo');

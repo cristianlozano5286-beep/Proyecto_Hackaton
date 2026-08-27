@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLANITO IA — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',sans-serif;background:#0A0F1E;color:#fff;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.top{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:rgba(10,15,30,0.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08);font-size:11px;letter-spacing:.6px;text-transform:uppercase}
+.logo{font-weight:700;letter-spacing:1px}
+.logo b{color:#FF1A1A}
+.btn{padding:8px 14px;border-radius:999px;font-weight:700;font-size:11px;cursor:pointer;border:none}
+.btn-ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15)}
+.btn-red{background:#FF1A1A;color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 24px 40px}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.5}
+h1{font-family:'Instrument Serif',serif;font-size:46px;line-height:.9;margin:8px 0}
+h1 em{color:#FF1A1A;font-style:italic}
+.desc{opacity:.7;font-size:13px;max-width:620px;line-height:1.6;margin-top:8px}
+.grid{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;color:#0A0F1E;border-radius:18px;padding:18px;border:1px solid #E8DDD0;display:flex;flex-direction:column;gap:10px;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,0.18)}
+.icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:24px;background:color-mix(in srgb, var(--c) 16%, white);border:1px solid color-mix(in srgb, var(--c) 30%, white)}
+.card h3{font-size:16px}
+.card p{font-size:12px;opacity:.7;line-height:1.5;flex:1}
+.meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.7px;text-transform:uppercase;opacity:.5}
+.cta{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--c)}
+.card.dark{background:linear-gradient(135deg,#0A0F1E,#1A2A44);color:#fff;border-color:rgba(255,255,255,0.12)}
+.card.dark p{opacity:.7;color:#fff}
+.card.dash{border:2px dashed #C8B898;background:linear-gradient(180deg,#FFF8E0,#FFFBF0)}
+.foot{margin-top:22px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.4;letter-spacing:.6px;text-transform:uppercase}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr} h1{font-size:36px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="index.html" class="logo">← LLANITO <b>IA</b> — Volver a la experiencia</a>
+  <div style="display:flex;gap:10px">
+    <a href="index.html" class="btn btn-ghost">Experiencia 1:1</a>
+    <button class="btn btn-red" onclick="alert('Próximamente: login con tu personaje.png')">👤 Ingresar</button>
+  </div>
+</header>
+<div class="wrap">
+  <p class="kicker">Dashboard — LLANITO IA 2026</p>
+  <h1>Elige tu <em>llano</em> para continuar</h1>
+  <p class="desc">Interface creada como pediste: cada tarjeta redirige a un módulo. Todos están preparados para que me digas qué contenido va dentro y los desarrollo. El personaje que me enviarás quedará anclado al login.</p>
+  <div class="grid">
+    <a class="card" href="index.html" style="--c:#FF1A1A">
+      <div class="icon">🦩</div>
+      <h3>01 — Fauna Viva</h3>
+      <p>Corocora, chigüiro, babilla, garza. Galería interactiva con sonido y fichas.</p>
+      <span class="meta">Stage 01 → Experiencia</span>
+      <span class="cta">Entrar →</span>
+    </a>
+    <a class="card" href="index.html" style="--c:#1B6B2A" onclick="localStorage.setItem('llanito_target','mapa')">
+      <div class="icon">🗺️</div>
+      <h3>02 — Mapa Esteros</h3>
+      <p>SVG interactivo Meta/Casanare/Arauca/Vichada. Cada punto es un estero real.</p>
+      <span class="meta">Mapa • Interactivo</span>
+      <span class="cta">Explorar →</span>
+    </a>
+    <a class="card" href="index.html" style="--c:#FF8C2A">
+      <div class="icon">🐎</div>
+      <h3>03 — Travesía</h3>
+      <p>Cabalgata horizontal amanecer → noche. Scroll storytelling.</p>
+      <span class="meta">Experiencia horizontal</span>
+      <span class="cta">Cabalgar →</span>
+    </a>
+    <a class="card" href="index.html" style="--c:#8B4513">
+      <div class="icon">🔥</div>
+      <h3>04 — Sabores</h3>
+      <p>Mamona, hayaca, tungo, casabe. Ritual de brasa con recetas.</p>
+      <span class="meta">Gastronomía llanera</span>
+      <span class="cta">Probar →</span>
+    </a>
+    <a class="card" href="index.html" style="--c:#2E86AB">
+      <div class="icon">🎵</div>
+      <h3>05 — Joropo IA</h3>
+      <p>Arpa, cuatro, maracas. Toca y genera versos con IA.</p>
+      <span class="meta">Cultura viva</span>
+      <span class="cta">Tocar →</span>
+    </a>
+    <a class="card" href="index.html" style="--c:#0A1A2F">
+      <div class="icon">🌌</div>
+      <h3>06 — Leyendas</h3>
+      <p>Silbón, Bola de Fuego, Jinete. Noche mística con niebla.</p>
+      <span class="meta">Noche • Fog canvas</span>
+      <span class="cta">Escuchar →</span>
+    </a>
+    <div class="card dash" style="--c:#FFD23F">
+      <div class="icon">🤠</div>
+      <h3>Tu Personaje Principal</h3>
+      <p>Espacio reservado para el PNG que me enviarás. Quedará en el login y en el dashboard.</p>
+      <span class="meta">personaje.png • 600x800</span>
+      <span class="cta">Ingresar →</span>
+    </div>
+    <a class="card dark" href="index.html" style="--c:#FFD23F">
+      <div class="icon">⚡</div>
+      <h3>Volver a la Experiencia</h3>
+      <p>Regresa al clon 1:1 de Les Animals con drag + espacio.</p>
+      <span class="meta">Les Animals tribute</span>
+      <span class="cta">Volver →</span>
+    </a>
+  </div>
+  <p class="foot">LLANITO IA • 2026 • Dashboard listo para redirección por módulos — dime qué módulo desarrollo primero</p>
+</div>
+</body>
+</html>

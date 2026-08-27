@@ -14,8 +14,64 @@
   <div class="top-right">
     <a href="#" class="lang">ES — EN</a>
     <a href="mailto:hola@llanito.ia" class="contact">Contact</a>
+    <button class="btn-dashboard" id="btnDashboard">☰ Dashboard</button>
   </div>
 </header>
+
+<!-- DASHBOARD OVERLAY (interface redirección módulos) -->
+<div class="dashboard" id="dashboard">
+  <div class="dashboard-head">
+    <div>
+      <p class="dash-kicker">LLANITO IA — Panel</p>
+      <h2>Elige tu <em>llano</em></h2>
+      <p class="dash-desc">Dashboard inspirado en Les Animals: cada tarjeta te lleva a un módulo vivo de la sabana. Tu personaje te acompaña.</p>
+    </div>
+    <button class="dash-close" id="dashClose">✕</button>
+  </div>
+  <div class="dash-grid">
+    <a class="dash-card" href="#" data-go="0">
+      <div class="dash-icon" style="--c:#FF1A1A">🦩</div>
+      <h3>Fauna Viva</h3><p>Corocora, chigüiro, garza. Galería con sonido.</p>
+      <span class="dash-cta">Entrar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#fauna">
+      <div class="dash-icon" style="--c:#1B6B2A">🗺️</div>
+      <h3>Mapa Esteros</h3><p>Meta, Casanare, Arauca, Vichada interactivo.</p>
+      <span class="dash-cta">Explorar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#travesia">
+      <div class="dash-icon" style="--c:#FF8C2A">🐎</div>
+      <h3>Travesía</h3><p>Cabalgata horizontal día → noche.</p>
+      <span class="dash-cta">Cabalgar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#sabores">
+      <div class="dash-icon" style="--c:#8B4513">🔥</div>
+      <h3>Sabores</h3><p>Mamona, hayaca, tungo. Ritual de brasa.</p>
+      <span class="dash-cta">Probar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#joropo">
+      <div class="dash-icon" style="--c:#2E86AB">🎵</div>
+      <h3>Joropo IA</h3><p>Arpa, cuatro, maracas que suenan.</p>
+      <span class="dash-cta">Tocar →</span>
+    </a>
+    <a class="dash-card" href="dashboard.html#leyendas">
+      <div class="dash-icon" style="--c:#0A1A2F">🌌</div>
+      <h3>Leyendas</h3><p>Silbón, Bola de Fuego, Jinete.</p>
+      <span class="dash-cta">Escuchar →</span>
+    </a>
+    <div class="dash-card dash-login" id="dashLoginCard">
+      <div class="dash-icon" style="--c:#FFD23F">🤠</div>
+      <h3>Tu Personaje</h3><p id="dashLoginText">Ingresa y ancla tu llanero principal.</p>
+      <span class="dash-cta" id="dashLoginCta">Ingresar →</span>
+    </div>
+    <a class="dash-card dash-more" href="dashboard.html">
+      <div class="dash-icon" style="--c:#6B8E23">⚡</div>
+      <h3>Dashboard Completo</h3><p>Vista completa con todos los módulos.</p>
+      <span class="dash-cta">Abrir dashboard →</span>
+    </a>
+  </div>
+  <p class="dash-foot">Clon 1:1 Les Animals 2019 • LLANITO IA 2026 • Redirección por módulos lista para tus instrucciones</p>
+</div>
 
 <!-- LEFT COUNTER like Les Animals -->
 <nav class="counter" id="counter">
@@ -83,6 +139,7 @@
 
 <!-- FOOTER LINKS like Les Animals -->
 <footer class="foot">
+  <a href="#" id="footDashboard">Dashboard →</a>
   <a href="#">LLANITO IA • Meta • Casanare • Arauca • Vichada</a>
   <span>2026 Wishes — Recreación Les Animals 2019</span>
 </footer>
